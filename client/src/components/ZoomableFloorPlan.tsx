@@ -13,6 +13,7 @@ interface ZoomableFloorPlanProps {
   }>;
   onExhibitorClick?: (exhibitorId: number) => void;
   showControls?: boolean;
+  hoveredExhibitorId?: number | null;
 }
 
 export default function ZoomableFloorPlan({
@@ -20,6 +21,7 @@ export default function ZoomableFloorPlan({
   exhibitors = [],
   onExhibitorClick,
   showControls = true,
+  hoveredExhibitorId = null,
 }: ZoomableFloorPlanProps) {
   const [scale, setScale] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -152,7 +154,11 @@ export default function ZoomableFloorPlan({
               {/* Marker Pin */}
               <div className="relative cursor-pointer">
                 {exhibitor.logoUrl ? (
-                  <div className="w-20 h-20 rounded-full bg-white border-4 border-red-500 shadow-lg overflow-hidden hover:scale-110 transition-transform">
+                  <div className={`w-20 h-20 rounded-full bg-white border-4 shadow-lg overflow-hidden transition-all duration-300 ${
+                    hoveredExhibitorId === exhibitor.id 
+                      ? 'border-yellow-400 scale-125 shadow-2xl ring-4 ring-yellow-300 animate-pulse' 
+                      : 'border-red-500 hover:scale-110'
+                  }`}>
                     <img
                       src={exhibitor.logoUrl}
                       alt={exhibitor.name}
@@ -160,7 +166,11 @@ export default function ZoomableFloorPlan({
                     />
                   </div>
                 ) : (
-                  <div className="w-10 h-10 rounded-full bg-red-500 border-4 border-white shadow-lg hover:scale-110 transition-transform" />
+                  <div className={`w-10 h-10 rounded-full bg-red-500 border-4 border-white shadow-lg transition-all duration-300 ${
+                    hoveredExhibitorId === exhibitor.id 
+                      ? 'scale-150 shadow-2xl ring-4 ring-yellow-300 animate-pulse' 
+                      : 'hover:scale-110'
+                  }`} />
                 )}
 
                 {/* Tooltip */}

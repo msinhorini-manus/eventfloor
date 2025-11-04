@@ -17,6 +17,7 @@ export default function PublicEvent() {
   const slug = params.slug!;
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedExhibitor, setSelectedExhibitor] = useState<number | null>(null);
+  const [hoveredExhibitor, setHoveredExhibitor] = useState<number | null>(null);
 
   const { data: event, isLoading: loadingEvent, error } = trpc.events.getBySlug.useQuery({ slug });
   const { data: exhibitors, isLoading: loadingExhibitors } = trpc.exhibitors.listByEventSlug.useQuery(
@@ -125,6 +126,7 @@ export default function PublicEvent() {
                       })) || []}
                       onExhibitorClick={(id) => setSelectedExhibitor(selectedExhibitor === id ? null : id)}
                       showControls={true}
+                      hoveredExhibitorId={hoveredExhibitor}
                     />
                   ) : (
                     <div className="bg-gray-100 rounded-lg p-12 text-center">
@@ -164,14 +166,18 @@ export default function PublicEvent() {
                       filteredExhibitors.map((exhibitor) => (
                         <div
                           key={exhibitor.id}
-                          className={`p-3 border rounded-lg cursor-pointer transition-colors ${
+                          className={`p-3 border rounded-lg cursor-pointer transition-all duration-300 ${
                             selectedExhibitor === exhibitor.id
                               ? 'bg-blue-50 border-blue-300'
+                              : hoveredExhibitor === exhibitor.id
+                              ? 'bg-yellow-50 border-yellow-400 shadow-lg'
                               : 'hover:bg-gray-50'
                           }`}
                           onClick={() => setSelectedExhibitor(
                             selectedExhibitor === exhibitor.id ? null : exhibitor.id
                           )}
+                          onMouseEnter={() => setHoveredExhibitor(exhibitor.id)}
+                          onMouseLeave={() => setHoveredExhibitor(null)}
                         >
                           <div className="flex items-start gap-3">
                             {exhibitor.logoUrl ? (

@@ -87,3 +87,8 @@
 - [x] Aumentar área da planta na página pública (dar mais destaque)
 - [x] Reduzir largura da coluna de expositores
 - [x] Melhorar proporção entre planta e sidebar (alterado de 2:1 para 3:1)
+
+## Melhorias de Interatividade
+- [x] Implementar destaque visual na planta ao passar mouse sobre expositor na lista
+- [x] Adicionar animação de pulso/brilho no marcador destacado (escala 125%, borda amarela, ring, animate-pulse)
+- [x] Sincronizar hover entre lista de expositores e marcadores na planta
