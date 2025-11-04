@@ -9,6 +9,7 @@ import { useState } from "react";
 import ZoomableFloorPlan from "@/components/ZoomableFloorPlan";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import ExhibitorDrawer from "@/components/ExhibitorDrawer";
 
 export default function PublicEvent() {
   const { t } = useTranslation();
@@ -239,6 +240,14 @@ export default function PublicEvent() {
           </p>
         </div>
       </footer>
+
+      {/* Exhibitor Drawer */}
+      {selectedExhibitor && exhibitors && (
+        <ExhibitorDrawer
+          exhibitor={exhibitors.find(ex => ex.id === selectedExhibitor)!}
+          onClose={() => setSelectedExhibitor(null)}
+        />
+      )}
     </div>
   );
 }

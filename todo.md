@@ -55,3 +55,10 @@
 - [x] Traduzir todas as páginas públicas
 - [ ] Traduzir área administrativa (pendente)
 - [x] Persistir preferência de idioma do usuário (localStorage)
+
+## Melhorias de UX
+- [x] Implementar modal/drawer lateral com detalhes completos do expositor ao clicar
+- [x] Adicionar botão "Visitado" para marcar expositores visitados
+- [x] Adicionar botões de ação (salvar/compartilhar)
+- [x] Exibir tags de categorias do expositor
+- [x] Mostrar endereço completo do expositor (se disponível)
