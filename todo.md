@@ -46,3 +46,4 @@
 ## Melhorias Solicitadas
 - [x] Adicionar funcionalidade de zoom na planta (visualização pública e admin)
 - [ ] Alterar título da aplicação de "Portal ERP - Gestão de Plantas de Eventos" para "Gestão de Plantas" (Nota: Alterar em Settings → General no Management UI)
+- [x] Aumentar tamanho do logo do expositor nos marcadores da planta (aumentado de 12 para 20)
