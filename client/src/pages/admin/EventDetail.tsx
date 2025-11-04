@@ -192,6 +192,23 @@ export default function EventDetail() {
               </CardContent>
             </Card>
 
+            {/* Sponsors */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Patrocinadores</CardTitle>
+                <CardDescription>
+                  Gerencie os patrocinadores deste evento
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button className="w-full" variant="outline" asChild>
+                  <Link href={`/admin/eventos/${eventId}/patrocinadores`}>
+                    Gerenciar Patrocinadores
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+
             {/* Quick Actions */}
             <Card>
               <CardHeader>

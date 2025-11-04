@@ -15,6 +15,20 @@
       "when": 1762217973322,
       "tag": "0001_long_blue_blade",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1762225508122,
+      "tag": "0002_majestic_morlun",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1762226362415,
+      "tag": "0003_hard_zarda",
+      "breakpoints": true
     }
   ]
 }

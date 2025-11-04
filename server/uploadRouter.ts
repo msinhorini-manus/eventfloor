@@ -82,4 +82,37 @@ export const uploadRouter = router({
         });
       }
     }),
+
+  // Upload sponsor logo
+  uploadSponsorLogo: adminProcedure
+    .input(z.object({
+      fileName: z.string(),
+      fileData: z.string(), // base64 encoded
+      mimeType: z.string(),
+    }))
+    .mutation(async ({ input }) => {
+      try {
+        // Decode base64
+        const buffer = Buffer.from(input.fileData, 'base64');
+        
+        // Generate unique key
+        const extension = input.fileName.split('.').pop() || 'png';
+        const fileKey = `sponsors/logo-${randomSuffix()}.${extension}`;
+        
+        // Upload to S3
+        const { url } = await storagePut(fileKey, buffer, input.mimeType);
+        
+        return {
+          success: true,
+          url,
+          key: fileKey,
+        };
+      } catch (error) {
+        console.error('Upload error:', error);
+        throw new TRPCError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: 'Failed to upload logo',
+        });
+      }
+    }),
 });

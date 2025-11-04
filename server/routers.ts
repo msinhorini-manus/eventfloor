@@ -240,6 +240,142 @@ export const appRouter = router({
         return { success: true };
       }),
   }),
+
+  // Sponsors router
+  sponsors: router({    // Public: list active sponsors
+    listActive: publicProcedure.query(async () => {
+      return await db.listActiveSponsors();
+    }),
+
+    // Admin: list all sponsors
+    listAll: adminProcedure.query(async () => {
+      return await db.listSponsors();
+    }),
+
+    // Admin: get sponsor by id
+    getById: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        const sponsor = await db.getSponsorById(input.id);
+        if (!sponsor) {
+          throw new TRPCError({ code: 'NOT_FOUND', message: 'Sponsor not found' });
+        }
+        return sponsor;
+      }),
+
+    // Admin: create sponsor
+    create: adminProcedure
+      .input(z.object({
+        name: z.string().min(1),
+        logoUrl: z.string().optional(),
+        logoKey: z.string().optional(),
+        website: z.string().optional(),
+        description: z.string().optional(),
+        tier: z.enum(["diamond", "gold", "silver", "bronze"]),
+        displayOrder: z.number().default(0),
+        isActive: z.boolean().default(true),
+      }))
+      .mutation(async ({ input }) => {
+        await db.createSponsor(input);
+        return { success: true };
+      }),
+
+    // Admin: update sponsor
+    update: adminProcedure
+      .input(z.object({
+        id: z.number(),
+        name: z.string().min(1).optional(),
+        logoUrl: z.string().optional(),
+        logoKey: z.string().optional(),
+        website: z.string().optional(),
+        description: z.string().optional(),
+        tier: z.enum(["diamond", "gold", "silver", "bronze"]).optional(),
+        displayOrder: z.number().optional(),
+        isActive: z.boolean().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        
+        // Check if sponsor exists
+        const sponsor = await db.getSponsorById(id);
+        if (!sponsor) {
+          throw new TRPCError({ code: 'NOT_FOUND', message: 'Sponsor not found' });
+        }
+
+        await db.updateSponsor(id, data);
+        return { success: true };
+      }),
+
+    // Admin: delete sponsor
+    delete: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await db.deleteSponsor(input.id);
+        return { success: true };
+      }),
+  }),
+
+  // Event Sponsors router
+  eventSponsors: router({
+    // Public: list sponsors by event slug
+    listByEventSlug: publicProcedure
+      .input(z.object({ eventSlug: z.string() }))
+      .query(async ({ input }) => {
+        const event = await db.getEventBySlug(input.eventSlug);
+        if (!event || event.status !== 'published') {
+          throw new TRPCError({ code: 'NOT_FOUND', message: 'Event not found' });
+        }
+        return await db.listEventSponsors(event.id);
+      }),
+
+    // Admin: list sponsors by event id
+    listByEventId: adminProcedure
+      .input(z.object({ eventId: z.number() }))
+      .query(async ({ input }) => {
+        return await db.listEventSponsors(input.eventId);
+      }),
+
+    // Admin: add sponsor to event
+    addToEvent: adminProcedure
+      .input(z.object({
+        eventId: z.number(),
+        sponsorId: z.number(),
+        tier: z.enum(["diamond", "gold", "silver", "bronze"]),
+        displayOrder: z.number().default(0),
+      }))
+      .mutation(async ({ input }) => {
+        await db.addSponsorToEvent(input);
+        return { success: true };
+      }),
+
+    // Admin: update event sponsor
+    update: adminProcedure
+      .input(z.object({
+        id: z.number(),
+        tier: z.enum(["diamond", "gold", "silver", "bronze"]).optional(),
+        displayOrder: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        
+        // Check if event sponsor exists
+        const eventSponsor = await db.getEventSponsorById(id);
+        if (!eventSponsor) {
+          throw new TRPCError({ code: 'NOT_FOUND', message: 'Event sponsor not found' });
+        }
+
+        await db.updateEventSponsor(id, data);
+        return { success: true };
+      }),
+
+    // Admin: remove sponsor from event
+    removeFromEvent: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await db.removeSponsorFromEvent(input.id);
+        return { success: true };
+      }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;

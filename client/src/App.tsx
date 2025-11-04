@@ -11,6 +11,10 @@ import EventForm from "./pages/admin/EventForm";
 import EventDetail from "./pages/admin/EventDetail";
 import ExhibitorsList from "./pages/admin/ExhibitorsList";
 import ExhibitorForm from "./pages/admin/ExhibitorForm";
+import SponsorsList from "./pages/admin/patrocinadores/index";
+import NovoPatrocinador from "./pages/admin/patrocinadores/novo";
+import EditarPatrocinador from "./pages/admin/patrocinadores/[id]/editar";
+import EventSponsors from "./pages/admin/EventSponsors";
 import PublicEvent from "./pages/public/PublicEvent";
 
 function Router() {
@@ -28,6 +32,10 @@ function Router() {
       <Route path="/admin/eventos/:eventId/expositores" component={ExhibitorsList} />
       <Route path="/admin/eventos/:id/editar" component={EventForm} />
       <Route path="/admin/eventos/:id" component={EventDetail} />
+      <Route path="/admin/patrocinadores" component={SponsorsList} />
+      <Route path="/admin/patrocinadores/novo" component={NovoPatrocinador} />
+      <Route path="/admin/patrocinadores/:id/editar" component={EditarPatrocinador} />
+      <Route path="/admin/eventos/:id/patrocinadores" component={EventSponsors} />
       
       {/* Public event route - must come after all /admin routes */}
       <Route path="/:slug" component={PublicEvent} />

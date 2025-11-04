@@ -115,3 +115,31 @@
 - [x] Verificar contraste em cards de eventos
 - [x] Verificar contraste em descrições e metadados
 - [x] Garantir legibilidade em todos os elementos de texto
+
+## Sistema de Patrocinadores
+- [x] Criar tabela sponsors no banco de dados
+- [x] Adicionar campos: name, logoUrl, website, tier, description, displayOrder, isActive
+- [x] Criar router tRPC para patrocinadores (CRUD completo)
+- [x] Criar funções de banco de dados (list, create, update, delete)
+- [x] Implementar página de lista de patrocinadores no admin
+- [x] Implementar formulário de criação/edição de patrocinador
+- [x] Adicionar upload de logo para S3
+- [x] Implementar sistema de níveis (Diamante/Ouro/Prata/Bronze)
+- [x] Criar seção "Nossos Patrocinadores" na Home
+- [x] Organizar patrocinadores por nível na visualização pública
+- [x] Adicionar badges visuais para cada nível
+- [x] Implementar hover effects nos cards de patrocinadores
+- [x] Garantir responsividade (mobile/tablet/desktop)
+- [x] Aplicar tema dark ERP Summit na seção
+
+## Refatoração: Sistema de Patrocinadores Global
+- [x] Criar tabela event_sponsors (eventId, sponsorId, tier, displayOrder)
+- [x] Atualizar funções de banco para suportar vínculo evento-patrocinador
+- [x] Criar router tRPC para event_sponsors (addToEvent, removeFromEvent, listByEvent, updateTier)
+- [x] Criar aba "Patrocinadores" na página de detalhes do evento (admin)
+- [x] Implementar modal de seleção de patrocinadores globais
+- [x] Permitir definir nível e ordem ao vincular patrocinador ao evento
+- [x] Atualizar SponsorsSection na Home para mostrar patrocinadores globais
+- [x] Criar seção de patrocinadores na página pública do evento (mostrar apenas vinculados)
+- [x] Remover campo eventId da tabela sponsors (se existir)
+- [x] Migrar dados existentes para novo modelo (se necessário)

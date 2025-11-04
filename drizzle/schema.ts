@@ -73,3 +73,45 @@ export const exhibitors = mysqlTable("exhibitors", {
 
 export type Exhibitor = typeof exhibitors.$inferSelect;
 export type InsertExhibitor = typeof exhibitors.$inferInsert;
+
+/**
+ * Sponsors table - stores information about event sponsors
+ */
+export const sponsors = mysqlTable("sponsors", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  logoUrl: text("logoUrl"),
+  logoKey: varchar("logoKey", { length: 255 }),
+  website: varchar("website", { length: 500 }),
+  description: text("description"),
+  /** Sponsor tier: diamond, gold, silver, bronze */
+  tier: mysqlEnum("tier", ["diamond", "gold", "silver", "bronze"]).notNull(),
+  /** Display order (lower numbers appear first) */
+  displayOrder: int("displayOrder").default(0).notNull(),
+  /** Whether this sponsor is active and should be displayed */
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Sponsor = typeof sponsors.$inferSelect;
+export type InsertSponsor = typeof sponsors.$inferInsert;
+
+/**
+ * Event Sponsors table - links sponsors to specific events
+ * Allows same sponsor to appear in multiple events with different tiers
+ */
+export const eventSponsors = mysqlTable("event_sponsors", {
+  id: int("id").autoincrement().primaryKey(),
+  eventId: int("eventId").notNull(),
+  sponsorId: int("sponsorId").notNull(),
+  /** Sponsor tier for this specific event: diamond, gold, silver, bronze */
+  tier: mysqlEnum("tier", ["diamond", "gold", "silver", "bronze"]).notNull(),
+  /** Display order within this event (lower numbers appear first) */
+  displayOrder: int("displayOrder").default(0).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type EventSponsor = typeof eventSponsors.$inferSelect;
+export type InsertEventSponsor = typeof eventSponsors.$inferInsert;

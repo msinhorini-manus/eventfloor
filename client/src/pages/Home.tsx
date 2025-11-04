@@ -7,6 +7,7 @@ import { trpc } from "@/lib/trpc";
 import { Link } from "wouter";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import SponsorsSection from "@/components/SponsorsSection";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -194,6 +195,9 @@ export default function Home() {
           )}
         </div>
       </section>
+
+      {/* Sponsors Section - ERP Summit Style */}
+      <SponsorsSection />
 
       {/* Footer - ERP Summit Style */}
       <footer className="bg-[#050d18] text-white py-8 mt-auto border-t border-white/10">

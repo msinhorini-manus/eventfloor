@@ -1,6 +1,6 @@
 import { eq, desc, and, like, or } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, events, exhibitors, InsertEvent, InsertExhibitor } from "../drizzle/schema";
+import { InsertUser, users, events, exhibitors, sponsors, eventSponsors, InsertEvent, InsertExhibitor, InsertSponsor, InsertEventSponsor } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -205,4 +205,121 @@ export async function deleteExhibitor(id: number) {
   if (!db) throw new Error("Database not available");
   
   await db.delete(exhibitors).where(eq(exhibitors.id, id));
+}
+
+// ==================== SPONSORS ====================
+
+export async function listSponsors() {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  return await db.select().from(sponsors).orderBy(sponsors.displayOrder, sponsors.createdAt);
+}
+
+export async function listActiveSponsors() {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  return await db.select().from(sponsors)
+    .where(eq(sponsors.isActive, true))
+    .orderBy(sponsors.displayOrder, sponsors.createdAt);
+}
+
+export async function getSponsorById(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  const result = await db.select().from(sponsors).where(eq(sponsors.id, id)).limit(1);
+  return result[0] || null;
+}
+
+export async function createSponsor(sponsor: InsertSponsor) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  const result = await db.insert(sponsors).values(sponsor);
+  return result;
+}
+
+export async function updateSponsor(id: number, sponsor: Partial<InsertSponsor>) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  await db.update(sponsors).set(sponsor).where(eq(sponsors.id, id));
+}
+
+export async function deleteSponsor(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  await db.delete(sponsors).where(eq(sponsors.id, id));
+}
+
+// ==================== EVENT SPONSORS ====================
+
+export async function listEventSponsors(eventId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  // Join with sponsors table to get full sponsor details
+  const result = await db
+    .select({
+      id: eventSponsors.id,
+      eventId: eventSponsors.eventId,
+      sponsorId: eventSponsors.sponsorId,
+      tier: eventSponsors.tier,
+      displayOrder: eventSponsors.displayOrder,
+      createdAt: eventSponsors.createdAt,
+      sponsor: sponsors,
+    })
+    .from(eventSponsors)
+    .leftJoin(sponsors, eq(eventSponsors.sponsorId, sponsors.id))
+    .where(eq(eventSponsors.eventId, eventId))
+    .orderBy(eventSponsors.displayOrder, eventSponsors.createdAt);
+  
+  return result;
+}
+
+export async function addSponsorToEvent(data: InsertEventSponsor) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  const result = await db.insert(eventSponsors).values(data);
+  return result;
+}
+
+export async function updateEventSponsor(id: number, data: Partial<InsertEventSponsor>) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  await db.update(eventSponsors).set(data).where(eq(eventSponsors.id, id));
+}
+
+export async function removeSponsorFromEvent(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  await db.delete(eventSponsors).where(eq(eventSponsors.id, id));
+}
+
+export async function getEventSponsorById(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  const result = await db
+    .select({
+      id: eventSponsors.id,
+      eventId: eventSponsors.eventId,
+      sponsorId: eventSponsors.sponsorId,
+      tier: eventSponsors.tier,
+      displayOrder: eventSponsors.displayOrder,
+      createdAt: eventSponsors.createdAt,
+      sponsor: sponsors,
+    })
+    .from(eventSponsors)
+    .leftJoin(sponsors, eq(eventSponsors.sponsorId, sponsors.id))
+    .where(eq(eventSponsors.id, id))
+    .limit(1);
+  
+  return result[0] || null;
 }
