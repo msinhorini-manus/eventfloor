@@ -2,7 +2,7 @@ import DashboardLayout from "@/components/DashboardLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { trpc } from "@/lib/trpc";
-import { useLocation, useParams } from "wouter";
+import { useLocation, useParams, Link } from "wouter";
 import { Calendar, MapPin, Loader2, Edit, Trash2, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
 import { useState } from "react";
@@ -176,8 +176,10 @@ export default function EventDetail() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Button className="w-full" variant="outline">
-                  Gerenciar Expositores
+                <Button className="w-full" variant="outline" asChild>
+                  <Link href={`/admin/eventos/${eventId}/expositores`}>
+                    Gerenciar Expositores
+                  </Link>
                 </Button>
               </CardContent>
             </Card>

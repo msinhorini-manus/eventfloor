@@ -7,9 +7,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { trpc } from "@/lib/trpc";
 import { useLocation, useParams } from "wouter";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { toast } from "sonner";
-import { Loader2 } from "lucide-react";
+import { Loader2, Upload, X } from "lucide-react";
 
 export default function EventForm() {
   const params = useParams();
@@ -25,7 +25,13 @@ export default function EventForm() {
     location: "",
     description: "",
     status: "draft" as "draft" | "published" | "archived",
+    floorPlanImageUrl: "",
+    floorPlanImageKey: "",
   });
+
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Fetch event data if editing
   const { data: event, isLoading: loadingEvent } = trpc.events.getById.useQuery(
@@ -43,7 +49,12 @@ export default function EventForm() {
         location: event.location || "",
         description: event.description || "",
         status: event.status,
+        floorPlanImageUrl: event.floorPlanImageUrl || "",
+        floorPlanImageKey: event.floorPlanImageKey || "",
       });
+      if (event.floorPlanImageUrl) {
+        setImagePreview(event.floorPlanImageUrl);
+      }
     }
   }, [event]);
 
@@ -59,6 +70,22 @@ export default function EventForm() {
     },
   });
 
+  const uploadMutation = trpc.upload.uploadFloorPlan.useMutation({
+    onSuccess: (data) => {
+      setFormData(prev => ({
+        ...prev,
+        floorPlanImageUrl: data.url,
+        floorPlanImageKey: data.key,
+      }));
+      setUploadingImage(false);
+      toast.success("Imagem enviada com sucesso!");
+    },
+    onError: (error) => {
+      setUploadingImage(false);
+      toast.error(error.message || "Erro ao enviar imagem");
+    },
+  });
+
   const updateMutation = trpc.events.update.useMutation({
     onSuccess: () => {
       toast.success("Evento atualizado com sucesso!");
@@ -71,11 +98,77 @@ export default function EventForm() {
     },
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      toast.error("Por favor, selecione uma imagem");
+      return;
+    }
+
+    // Validate file size (max 10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error("Imagem muito grande. Máximo 10MB");
+      return;
+    }
+
+    // Show preview
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+
+    // Upload to server
+    if (isEdit) {
+      setUploadingImage(true);
+      const base64 = await fileToBase64(file);
+      uploadMutation.mutate({
+        eventId: eventId,
+        fileName: file.name,
+        fileData: base64,
+        mimeType: file.type,
+      });
+    }
+  };
+
+  const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const base64 = (reader.result as string).split(',')[1];
+        resolve(base64);
+      };
+      reader.onerror = reject;
+    });
+  };
+
+  const handleRemoveImage = () => {
+    setImagePreview(null);
+    setFormData(prev => ({
+      ...prev,
+      floorPlanImageUrl: "",
+      floorPlanImageKey: "",
+    }));
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.name || !formData.slug || !formData.dateStart) {
       toast.error("Preencha todos os campos obrigatórios");
+      return;
+    }
+
+    // If creating new event and has image, upload first
+    if (!isEdit && fileInputRef.current?.files?.[0]) {
+      toast.error("Salve o evento primeiro, depois faça upload da planta");
       return;
     }
 
@@ -225,6 +318,67 @@ export default function EventForm() {
               </div>
             </CardContent>
           </Card>
+
+          {isEdit && (
+            <Card className="mt-6">
+              <CardHeader>
+                <CardTitle>Planta do Evento</CardTitle>
+                <CardDescription>
+                  Faça upload da imagem da planta do evento
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className="hidden"
+                    id="floor-plan-upload"
+                  />
+                  
+                  {imagePreview ? (
+                    <div className="relative">
+                      <img
+                        src={imagePreview}
+                        alt="Preview da planta"
+                        className="w-full rounded-lg border"
+                      />
+                      <Button
+                        type="button"
+                        variant="destructive"
+                        size="sm"
+                        className="absolute top-2 right-2"
+                        onClick={handleRemoveImage}
+                        disabled={uploadingImage}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                      {uploadingImage && (
+                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-lg">
+                          <Loader2 className="h-8 w-8 animate-spin text-white" />
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <label
+                      htmlFor="floor-plan-upload"
+                      className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors"
+                    >
+                      <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                        <Upload className="h-12 w-12 text-gray-400 mb-3" />
+                        <p className="mb-2 text-sm text-gray-500">
+                          <span className="font-semibold">Clique para fazer upload</span> ou arraste e solte
+                        </p>
+                        <p className="text-xs text-gray-500">PNG, JPG até 10MB</p>
+                      </div>
+                    </label>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          )}
 
           <div className="flex items-center gap-4 mt-6">
             <Button

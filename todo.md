@@ -29,3 +29,12 @@
 - [ ] Documentação de uso
 - [ ] Ajustes finais de UX
 - [ ] Deploy final
+
+## Fase 2: Upload de Imagens e Gestão de Expositores
+- [x] Implementar upload de planta do evento (S3)
+- [x] Adicionar preview da planta no formulário de evento
+- [x] Criar página de gestão de expositores
+- [x] Implementar upload de logo do expositor
+- [x] Criar formulário de criação/edição de expositor
+- [x] Sistema de marcação de posição na planta (clique para posicionar)
+- [x] Visualizar expositores marcados na planta (admin)
