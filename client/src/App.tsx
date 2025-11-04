@@ -5,31 +5,43 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import AdminDashboard from "./pages/admin/Dashboard";
+import EventsList from "./pages/admin/EventsList";
+import EventForm from "./pages/admin/EventForm";
+import EventDetail from "./pages/admin/EventDetail";
+import PublicEvent from "./pages/public/PublicEvent";
 
 function Router() {
-  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
+      {/* Public routes */}
       <Route path={"/"} component={Home} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
+      <Route path="/:slug" component={PublicEvent} />
+      
+      {/* Admin routes */}
+      <Route path="/admin">
+        {() => (
+          <Switch>
+            <Route path="/admin" component={AdminDashboard} />
+            <Route path="/admin/eventos" component={EventsList} />
+            <Route path="/admin/eventos/novo" component={EventForm} />
+            <Route path="/admin/eventos/:id/editar" component={EventForm} />
+            <Route path="/admin/eventos/:id" component={EventDetail} />
+            <Route component={NotFound} />
+          </Switch>
+        )}
+      </Route>
+      
+      <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
   );
 }
 
-// NOTE: About Theme
-// - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
-//   to keep consistent foreground/background color across components
-// - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
-
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
+      <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
           <Router />

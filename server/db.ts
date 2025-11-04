@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm";
+import { eq, desc, and, like, or } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { InsertUser, users, events, exhibitors, InsertEvent, InsertExhibitor } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -89,4 +89,120 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-// TODO: add feature queries here as your schema grows.
+// ============ Events Functions ============
+
+export async function getAllEvents() {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db.select().from(events).orderBy(desc(events.createdAt));
+}
+
+export async function getEventById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  
+  const result = await db.select().from(events).where(eq(events.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getEventBySlug(slug: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  
+  const result = await db.select().from(events).where(eq(events.slug, slug)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getPublishedEvents() {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db.select().from(events)
+    .where(eq(events.status, "published"))
+    .orderBy(desc(events.dateStart));
+}
+
+export async function createEvent(event: InsertEvent) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  const result = await db.insert(events).values(event);
+  return result;
+}
+
+export async function updateEvent(id: number, event: Partial<InsertEvent>) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  await db.update(events).set(event).where(eq(events.id, id));
+}
+
+export async function deleteEvent(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  // Delete all exhibitors first
+  await db.delete(exhibitors).where(eq(exhibitors.eventId, id));
+  // Then delete the event
+  await db.delete(events).where(eq(events.id, id));
+}
+
+// ============ Exhibitors Functions ============
+
+export async function getExhibitorsByEventId(eventId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db.select().from(exhibitors)
+    .where(eq(exhibitors.eventId, eventId))
+    .orderBy(exhibitors.name);
+}
+
+export async function getExhibitorById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  
+  const result = await db.select().from(exhibitors).where(eq(exhibitors.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function searchExhibitors(eventId: number, searchTerm: string) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db.select().from(exhibitors)
+    .where(
+      and(
+        eq(exhibitors.eventId, eventId),
+        or(
+          like(exhibitors.name, `%${searchTerm}%`),
+          like(exhibitors.category, `%${searchTerm}%`),
+          like(exhibitors.boothNumber, `%${searchTerm}%`)
+        )
+      )
+    )
+    .orderBy(exhibitors.name);
+}
+
+export async function createExhibitor(exhibitor: InsertExhibitor) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  const result = await db.insert(exhibitors).values(exhibitor);
+  return result;
+}
+
+export async function updateExhibitor(id: number, exhibitor: Partial<InsertExhibitor>) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  await db.update(exhibitors).set(exhibitor).where(eq(exhibitors.id, id));
+}
+
+export async function deleteExhibitor(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  await db.delete(exhibitors).where(eq(exhibitors.id, id));
+}

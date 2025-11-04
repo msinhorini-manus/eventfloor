@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, float, boolean } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -25,4 +25,51 @@ export const users = mysqlTable("users", {
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
-// TODO: Add your tables here
+/**
+ * Events table - stores information about Portal ERP events
+ */
+export const events = mysqlTable("events", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+  dateStart: timestamp("dateStart").notNull(),
+  dateEnd: timestamp("dateEnd"),
+  location: varchar("location", { length: 255 }),
+  description: text("description"),
+  floorPlanImageUrl: text("floorPlanImageUrl"),
+  floorPlanImageKey: varchar("floorPlanImageKey", { length: 255 }),
+  status: mysqlEnum("status", ["draft", "published", "archived"]).default("draft").notNull(),
+  createdBy: int("createdBy").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Event = typeof events.$inferSelect;
+export type InsertEvent = typeof events.$inferInsert;
+
+/**
+ * Exhibitors table - stores information about exhibitors at events
+ */
+export const exhibitors = mysqlTable("exhibitors", {
+  id: int("id").autoincrement().primaryKey(),
+  eventId: int("eventId").notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  slug: varchar("slug", { length: 255 }).notNull(),
+  logoUrl: text("logoUrl"),
+  logoKey: varchar("logoKey", { length: 255 }),
+  description: text("description"),
+  website: varchar("website", { length: 255 }),
+  category: varchar("category", { length: 100 }),
+  boothNumber: varchar("boothNumber", { length: 50 }),
+  /** Position X on floor plan (percentage 0-100) */
+  positionX: float("positionX"),
+  /** Position Y on floor plan (percentage 0-100) */
+  positionY: float("positionY"),
+  /** Whether this exhibitor is featured/highlighted */
+  featured: boolean("featured").default(false).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Exhibitor = typeof exhibitors.$inferSelect;
+export type InsertExhibitor = typeof exhibitors.$inferInsert;
