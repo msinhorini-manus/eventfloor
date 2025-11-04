@@ -41,3 +41,8 @@
 
 ## Bugs Reportados
 - [x] Corrigir problema ao criar evento - não é possível criar planta de evento (Resolvido: corrigida ordem das rotas no App.tsx)
+- [ ] Corrigir navegação do botão "Adicionar Expositor" na página de detalhes do evento
+
+## Melhorias Solicitadas
+- [x] Adicionar funcionalidade de zoom na planta (visualização pública e admin)
+- [ ] Alterar título da aplicação de "Portal ERP - Gestão de Plantas de Eventos" para "Gestão de Plantas" (Nota: Alterar em Settings → General no Management UI)

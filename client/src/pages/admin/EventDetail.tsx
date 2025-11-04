@@ -6,6 +6,7 @@ import { useLocation, useParams, Link } from "wouter";
 import { Calendar, MapPin, Loader2, Edit, Trash2, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
 import { useState } from "react";
+import ZoomableFloorPlan from "@/components/ZoomableFloorPlan";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -154,12 +155,19 @@ export default function EventDetail() {
               <Card>
                 <CardHeader>
                   <CardTitle>Planta do Evento</CardTitle>
+                  <CardDescription>Arraste para mover, scroll para zoom</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <img 
-                    src={event.floorPlanImageUrl} 
-                    alt={event.name}
-                    className="w-full rounded-lg border"
+                  <ZoomableFloorPlan
+                    imageUrl={event.floorPlanImageUrl}
+                    exhibitors={exhibitors?.filter(ex => ex.positionX && ex.positionY).map(ex => ({
+                      id: ex.id,
+                      name: ex.name,
+                      logoUrl: ex.logoUrl ?? undefined,
+                      positionX: ex.positionX!,
+                      positionY: ex.positionY!,
+                    })) || []}
+                    showControls={true}
                   />
                 </CardContent>
               </Card>
@@ -190,13 +198,25 @@ export default function EventDetail() {
                 <CardTitle>Ações Rápidas</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
-                <Button className="w-full" variant="outline" disabled>
+                <Button 
+                  className="w-full" 
+                  variant="outline"
+                  onClick={() => navigate(`/admin/eventos/${eventId}/editar`)}
+                >
                   Upload de Planta
                 </Button>
-                <Button className="w-full" variant="outline" disabled>
+                <Button 
+                  className="w-full" 
+                  variant="outline"
+                  onClick={() => navigate(`/admin/eventos/${eventId}/expositores/novo`)}
+                >
                   Adicionar Expositor
                 </Button>
-                <Button className="w-full" variant="outline" disabled>
+                <Button 
+                  className="w-full" 
+                  variant="outline"
+                  onClick={() => toast.info("Funcionalidade em desenvolvimento")}
+                >
                   Exportar Dados
                 </Button>
               </CardContent>

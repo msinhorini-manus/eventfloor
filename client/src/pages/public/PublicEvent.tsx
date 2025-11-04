@@ -6,6 +6,7 @@ import { useParams, Link } from "wouter";
 import { Calendar, MapPin, Loader2, Search, Home, ExternalLink } from "lucide-react";
 import { APP_LOGO, APP_TITLE } from "@/const";
 import { useState } from "react";
+import ZoomableFloorPlan from "@/components/ZoomableFloorPlan";
 
 export default function PublicEvent() {
   const params = useParams();
@@ -106,35 +107,18 @@ export default function PublicEvent() {
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-4">Planta do Evento</h3>
                   {event.floorPlanImageUrl ? (
-                    <div className="relative">
-                      <img 
-                        src={event.floorPlanImageUrl} 
-                        alt={event.name}
-                        className="w-full rounded-lg border"
-                      />
-                      {/* Placeholder for interactive markers */}
-                      {exhibitors?.map((exhibitor) => (
-                        exhibitor.positionX && exhibitor.positionY && (
-                          <button
-                            key={exhibitor.id}
-                            className={`absolute w-6 h-6 rounded-full transition-all ${
-                              selectedExhibitor === exhibitor.id
-                                ? 'bg-blue-600 scale-125 ring-4 ring-blue-200'
-                                : 'bg-blue-500 hover:bg-blue-600 hover:scale-110'
-                            }`}
-                            style={{
-                              left: `${exhibitor.positionX}%`,
-                              top: `${exhibitor.positionY}%`,
-                              transform: 'translate(-50%, -50%)',
-                            }}
-                            onClick={() => setSelectedExhibitor(
-                              selectedExhibitor === exhibitor.id ? null : exhibitor.id
-                            )}
-                            title={exhibitor.name}
-                          />
-                        )
-                      ))}
-                    </div>
+                    <ZoomableFloorPlan
+                      imageUrl={event.floorPlanImageUrl}
+                      exhibitors={exhibitors?.filter(ex => ex.positionX && ex.positionY).map(ex => ({
+                        id: ex.id,
+                        name: ex.name,
+                        logoUrl: ex.logoUrl ?? undefined,
+                        positionX: ex.positionX!,
+                        positionY: ex.positionY!,
+                      })) || []}
+                      onExhibitorClick={(id) => setSelectedExhibitor(selectedExhibitor === id ? null : id)}
+                      showControls={true}
+                    />
                   ) : (
                     <div className="bg-gray-100 rounded-lg p-12 text-center">
                       <p className="text-gray-600">Planta do evento em breve</p>
