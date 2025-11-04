@@ -13,9 +13,11 @@
   "home": {
     "title": "Explore Our Events",
     "subtitle": "Browse through Portal ERP's interactive event floor plans and discover exhibitors, talks, and networking opportunities.",
+    "upcomingEvents": "Upcoming Events",
+    "comingSoon": "Coming Soon",
+    "allEvents": "All Events",
     "availableEvents": "Available Events",
-    "adminArea": "Admin Area",
-    "allEvents": "All Events"
+    "adminArea": "Admin Area"
   },
   "event": {
     "floorPlan": "Event Floor Plan",

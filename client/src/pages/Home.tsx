@@ -13,6 +13,20 @@ export default function Home() {
   const { user, isAuthenticated } = useAuth();
   const { data: events, isLoading } = trpc.events.listPublished.useQuery();
 
+  // Separar eventos em breve (próximos 30 dias) e outros eventos
+  const now = new Date();
+  const thirtyDaysFromNow = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+  
+  const upcomingEvents = events?.filter(event => {
+    const eventDate = new Date(event.dateStart);
+    return eventDate >= now && eventDate <= thirtyDaysFromNow;
+  }).sort((a, b) => new Date(a.dateStart).getTime() - new Date(b.dateStart).getTime());
+
+  const otherEvents = events?.filter(event => {
+    const eventDate = new Date(event.dateStart);
+    return eventDate > thirtyDaysFromNow;
+  }).sort((a, b) => new Date(a.dateStart).getTime() - new Date(b.dateStart).getTime());
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
@@ -54,10 +68,68 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Events List */}
+      {/* Upcoming Events Section */}
+      {!isLoading && upcomingEvents && upcomingEvents.length > 0 && (
+        <section className="py-12 bg-gradient-to-br from-orange-50 to-red-50">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="h-10 w-1 bg-orange-500 rounded"></div>
+              <h3 className="text-3xl font-bold text-gray-900">{t('home.upcomingEvents')}</h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {upcomingEvents.map((event) => (
+                <Link key={event.id} href={`/${event.slug}`}>
+                  <Card className="hover:shadow-xl transition-all cursor-pointer h-full border-2 border-orange-200 hover:border-orange-400">
+                    <div className="relative">
+                      {event.floorPlanImageUrl && (
+                        <div className="aspect-video w-full overflow-hidden rounded-t-lg">
+                          <img 
+                            src={event.floorPlanImageUrl} 
+                            alt={event.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      )}
+                      <div className="absolute top-2 right-2 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                        {t('home.comingSoon')}
+                      </div>
+                    </div>
+                    <CardHeader>
+                      <CardTitle className="text-xl">{event.name}</CardTitle>
+                      <CardDescription className="flex items-center gap-2 text-sm font-medium text-orange-600">
+                        <Calendar className="h-4 w-4" />
+                        {new Date(event.dateStart).toLocaleDateString('pt-BR', {
+                          day: '2-digit',
+                          month: 'long',
+                          year: 'numeric'
+                        })}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      {event.location && (
+                        <p className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                          <MapPin className="h-4 w-4" />
+                          {event.location}
+                        </p>
+                      )}
+                      {event.description && (
+                        <p className="text-sm text-gray-600 line-clamp-2">
+                          {event.description}
+                        </p>
+                      )}
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* All Events List */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h3 className="text-3xl font-bold text-gray-900 mb-8">{t('home.availableEvents')}</h3>
+          <h3 className="text-3xl font-bold text-gray-900 mb-8">{t('home.allEvents')}</h3>
           
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -74,9 +146,9 @@ export default function Home() {
                 </Card>
               ))}
             </div>
-          ) : events && events.length > 0 ? (
+          ) : otherEvents && otherEvents.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {events.map((event) => (
+              {otherEvents.map((event) => (
                 <Link key={event.id} href={`/${event.slug}`}>
                   <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
                     {event.floorPlanImageUrl && (

@@ -13,9 +13,11 @@
   "home": {
     "title": "Explore Nossos Eventos",
     "subtitle": "Navegue pelas plantas interativas dos eventos do Portal ERP e descubra expositores, palestras e oportunidades de networking.",
+    "upcomingEvents": "Eventos em Breve",
+    "comingSoon": "Em Breve",
+    "allEvents": "Todos os Eventos",
     "availableEvents": "Eventos Disponíveis",
-    "adminArea": "Área Admin",
-    "allEvents": "Todos os Eventos"
+    "adminArea": "Área Admin"
   },
   "event": {
     "floorPlan": "Planta do Evento",

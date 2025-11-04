@@ -64,3 +64,8 @@
 - [x] Exibir tags de categorias do expositor
 - [x] Mostrar endereço completo do expositor (se disponível)
 - [ ] Traduzir página Home (lista de eventos)
+
+## Melhorias da Home
+- [x] Criar seção "Eventos em Breve" na página inicial
+- [x] Ordenar eventos por data (próximos primeiro)
+- [x] Destacar visualmente eventos que acontecerão nos próximos 30 dias
