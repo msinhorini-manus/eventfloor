@@ -98,13 +98,13 @@ export default function Home() {
                     </CardHeader>
                     <CardContent>
                       {event.location && (
-                        <p className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                        <p className="flex items-center gap-2 text-sm text-gray-300 mb-2">
                           <MapPin className="h-4 w-4" />
                           {event.location}
                         </p>
                       )}
                       {event.description && (
-                        <p className="text-sm text-gray-600 line-clamp-2">
+                        <p className="text-sm text-gray-300 line-clamp-2">
                           {event.description}
                         </p>
                       )}
@@ -152,8 +152,8 @@ export default function Home() {
                       </div>
                     )}
                     <CardHeader>
-                      <CardTitle className="text-xl">{event.name}</CardTitle>
-                      <CardDescription className="flex items-center gap-2 text-sm">
+                      <CardTitle className="text-xl text-white">{event.name}</CardTitle>
+                      <CardDescription className="flex items-center gap-2 text-sm text-gray-300">
                         <Calendar className="h-4 w-4" />
                         {new Date(event.dateStart).toLocaleDateString('pt-BR', {
                           day: '2-digit',
@@ -164,13 +164,13 @@ export default function Home() {
                     </CardHeader>
                     <CardContent>
                       {event.location && (
-                        <p className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                        <p className="flex items-center gap-2 text-sm text-gray-300 mb-2">
                           <MapPin className="h-4 w-4" />
                           {event.location}
                         </p>
                       )}
                       {event.description && (
-                        <p className="text-sm text-gray-600 line-clamp-2">
+                        <p className="text-sm text-gray-300 line-clamp-2">
                           {event.description}
                         </p>
                       )}
@@ -180,13 +180,13 @@ export default function Home() {
               ))}
             </div>
           ) : (
-            <Card>
+            <Card className="bg-[#0f1f3a] border-gray-800">
               <CardContent className="py-12 text-center">
                 <Users className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                <h4 className="text-xl font-semibold text-gray-700 mb-2">
+                <h4 className="text-xl font-semibold text-white mb-2">
                   {t('common.noResults')}
                 </h4>
-                <p className="text-gray-600">
+                <p className="text-gray-300">
                   {t('home.subtitle')}
                 </p>
               </CardContent>

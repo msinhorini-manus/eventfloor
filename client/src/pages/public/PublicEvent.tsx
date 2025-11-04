@@ -33,7 +33,7 @@ export default function PublicEvent() {
 
   if (loadingEvent) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-[#0a1628]">
         <Loader2 className="h-12 w-12 animate-spin text-gray-400" />
       </div>
     );
@@ -41,9 +41,9 @@ export default function PublicEvent() {
 
   if (error || !event) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <h2 className="text-2xl font-bold text-gray-700 mb-4">{t('event.notFound')}</h2>
-        <p className="text-gray-600 mb-6">{t('event.notFoundMessage')}</p>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#0a1628]">
+        <h2 className="text-2xl font-bold text-white mb-4">{t('event.notFound')}</h2>
+        <p className="text-gray-300 mb-6">{t('event.notFoundMessage')}</p>
         <Link href="/">
           <Button>
             <Home className="h-4 w-4 mr-2" />

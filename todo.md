@@ -108,3 +108,10 @@
 - [x] Remover botão "Admin Área" da página Home (visitantes não devem ver)
 - [x] Remover botão "Admin Área" da página pública do evento
 - [x] Manter acesso administrativo apenas via URL direta /admin
+
+## Acessibilidade - Contraste de Cores
+- [x] Revisar todos os textos da página Home para garantir cor branca/clara
+- [x] Revisar todos os textos da página pública do evento para garantir cor branca/clara
+- [x] Verificar contraste em cards de eventos
+- [x] Verificar contraste em descrições e metadados
+- [x] Garantir legibilidade em todos os elementos de texto
