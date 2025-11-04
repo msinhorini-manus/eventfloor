@@ -133,6 +133,24 @@
   input[type="checkbox"]:not(:disabled),
   input[type="radio"]:not(:disabled) {
     @apply cursor-pointer;
+    transition: all 0.3s ease;
+  }
+  
+  /* Hover effects para botões e links */
+  button:not(:disabled):hover,
+  [role="button"]:not([aria-disabled="true"]):hover,
+  [type="button"]:not(:disabled):hover,
+  [type="submit"]:not(:disabled):hover,
+  [type="reset"]:not(:disabled):hover,
+  a[href]:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Hover effects para cards */
+  [class*="card"]:hover,
+  [class*="Card"]:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
   }
 }
 

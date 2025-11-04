@@ -76,3 +76,9 @@
 - [x] Ajustar tipografia conforme o site de referência
 - [x] Atualizar componentes com o novo design system (tema dark)
 - [ ] Alterar nome da plataforma para "ERP Summit | Gestão de Plantas" (requer alteração em VITE_APP_TITLE via Management UI)
+
+## Melhorias de UX - Animações
+- [x] Adicionar efeitos de transição suave (hover) em todos os botões
+- [x] Adicionar efeitos de transição suave (hover) em todos os links
+- [x] Adicionar efeitos de escala e brilho nos cards de eventos
+- [x] Adicionar animações suaves em elementos interativos
