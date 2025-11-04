@@ -18,24 +18,19 @@ function Router() {
     <Switch>
       {/* Public routes */}
       <Route path={"/"} component={Home} />
-      <Route path="/:slug" component={PublicEvent} />
       
-      {/* Admin routes */}
-      <Route path="/admin">
-        {() => (
-          <Switch>
-            <Route path="/admin" component={AdminDashboard} />
-            <Route path="/admin/eventos" component={EventsList} />
-            <Route path="/admin/eventos/novo" component={EventForm} />
-            <Route path="/admin/eventos/:id/editar" component={EventForm} />
-            <Route path="/admin/eventos/:eventId/expositores" component={ExhibitorsList} />
-            <Route path="/admin/eventos/:eventId/expositores/novo" component={ExhibitorForm} />
-            <Route path="/admin/eventos/:eventId/expositores/:exhibitorId/editar" component={ExhibitorForm} />
-            <Route path="/admin/eventos/:id" component={EventDetail} />
-            <Route component={NotFound} />
-          </Switch>
-        )}
-      </Route>
+      {/* Admin routes - specific routes first */}
+      <Route path="/admin" component={AdminDashboard} />
+      <Route path="/admin/eventos" component={EventsList} />
+      <Route path="/admin/eventos/novo" component={EventForm} />
+      <Route path="/admin/eventos/:eventId/expositores/novo" component={ExhibitorForm} />
+      <Route path="/admin/eventos/:eventId/expositores/:exhibitorId/editar" component={ExhibitorForm} />
+      <Route path="/admin/eventos/:eventId/expositores" component={ExhibitorsList} />
+      <Route path="/admin/eventos/:id/editar" component={EventForm} />
+      <Route path="/admin/eventos/:id" component={EventDetail} />
+      
+      {/* Public event route - must come after all /admin routes */}
+      <Route path="/:slug" component={PublicEvent} />
       
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />

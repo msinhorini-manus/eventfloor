@@ -38,3 +38,6 @@
 - [x] Criar formulário de criação/edição de expositor
 - [x] Sistema de marcação de posição na planta (clique para posicionar)
 - [x] Visualizar expositores marcados na planta (admin)
+
+## Bugs Reportados
+- [x] Corrigir problema ao criar evento - não é possível criar planta de evento (Resolvido: corrigida ordem das rotas no App.tsx)
