@@ -14,6 +14,7 @@ interface ZoomableFloorPlanProps {
   onExhibitorClick?: (exhibitorId: number) => void;
   showControls?: boolean;
   hoveredExhibitorId?: number | null;
+  focusedExhibitorId?: number | null;
 }
 
 export default function ZoomableFloorPlan({
@@ -22,6 +23,7 @@ export default function ZoomableFloorPlan({
   onExhibitorClick,
   showControls = true,
   hoveredExhibitorId = null,
+  focusedExhibitorId = null,
 }: ZoomableFloorPlanProps) {
   const [scale, setScale] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -77,6 +79,30 @@ export default function ZoomableFloorPlan({
     return () => window.removeEventListener("mouseup", handleMouseUpGlobal);
   }, []);
 
+  // Centralizar e dar zoom quando um expositor é focado
+  useEffect(() => {
+    if (focusedExhibitorId && containerRef.current) {
+      const exhibitor = exhibitors.find(ex => ex.id === focusedExhibitorId);
+      if (exhibitor) {
+        const container = containerRef.current;
+        const containerWidth = container.clientWidth;
+        const containerHeight = container.clientHeight;
+        
+        // Calcular posição do expositor em pixels
+        const exhibitorX = (exhibitor.positionX / 100) * containerWidth;
+        const exhibitorY = (exhibitor.positionY / 100) * containerHeight;
+        
+        // Centralizar o expositor na tela
+        const targetX = containerWidth / 2 - exhibitorX * 2;
+        const targetY = containerHeight / 2 - exhibitorY * 2;
+        
+        // Aplicar zoom e centralização com animação suave
+        setScale(2);
+        setPosition({ x: targetX, y: targetY });
+      }
+    }
+  }, [focusedExhibitorId, exhibitors]);
+
   return (
     <div className="relative w-full h-full min-h-[500px] bg-muted/20 rounded-lg overflow-hidden border">
       {/* Zoom Controls */}
@@ -122,7 +148,7 @@ export default function ZoomableFloorPlan({
           style={{
             transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
             transformOrigin: "center center",
-            transition: isDragging ? "none" : "transform 0.1s ease-out",
+            transition: isDragging ? "none" : "transform 0.5s ease-in-out",
           }}
           className="relative inline-block"
         >

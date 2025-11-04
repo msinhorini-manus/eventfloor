@@ -127,6 +127,7 @@ export default function PublicEvent() {
                       onExhibitorClick={(id) => setSelectedExhibitor(selectedExhibitor === id ? null : id)}
                       showControls={true}
                       hoveredExhibitorId={hoveredExhibitor}
+                      focusedExhibitorId={selectedExhibitor}
                     />
                   ) : (
                     <div className="bg-gray-100 rounded-lg p-12 text-center">

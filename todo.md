@@ -92,3 +92,8 @@
 - [x] Implementar destaque visual na planta ao passar mouse sobre expositor na lista
 - [x] Adicionar animação de pulso/brilho no marcador destacado (escala 125%, borda amarela, ring, animate-pulse)
 - [x] Sincronizar hover entre lista de expositores e marcadores na planta
+
+## Melhorias de Navegação
+- [x] Centralizar planta na localização do expositor ao clicar
+- [x] Aplicar zoom automático ao clicar em expositor (zoom 2x)
+- [x] Adicionar animação suave de transição ao centralizar (0.5s ease-in-out)
