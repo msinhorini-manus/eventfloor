@@ -1,0 +1,37 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "search": "Search",
+    "noResults": "No results found"
+  },
+  "home": {
+    "title": "Explore Our Events",
+    "subtitle": "Browse through Portal ERP's interactive event floor plans and discover exhibitors, talks, and networking opportunities.",
+    "availableEvents": "Available Events",
+    "adminArea": "Admin Area",
+    "allEvents": "All Events"
+  },
+  "event": {
+    "floorPlan": "Event Floor Plan",
+    "floorPlanDescription": "Drag to move, scroll to zoom, click markers for details",
+    "floorPlanSoon": "Event floor plan coming soon",
+    "exhibitors": "Exhibitors",
+    "exhibitorsCount": "{{count}} exhibitor(s)",
+    "searchExhibitor": "Search exhibitor...",
+    "noExhibitors": "No exhibitors registered",
+    "noExhibitorsFound": "No exhibitors found",
+    "visitWebsite": "Visit website",
+    "booth": "Booth",
+    "notFound": "Event not found",
+    "notFoundMessage": "The event you are looking for does not exist or is not published."
+  },
+  "footer": {
+    "rights": "© {{year}} Portal ERP. All rights reserved."
+  }
+}

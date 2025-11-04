@@ -7,8 +7,11 @@ import { Calendar, MapPin, Loader2, Search, Home, ExternalLink } from "lucide-re
 import { APP_LOGO, APP_TITLE } from "@/const";
 import { useState } from "react";
 import ZoomableFloorPlan from "@/components/ZoomableFloorPlan";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function PublicEvent() {
+  const { t } = useTranslation();
   const params = useParams();
   const slug = params.slug!;
   const [searchTerm, setSearchTerm] = useState("");
@@ -37,12 +40,12 @@ export default function PublicEvent() {
   if (error || !event) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center">
-        <h2 className="text-2xl font-bold text-gray-700 mb-4">Evento não encontrado</h2>
-        <p className="text-gray-600 mb-6">O evento que você procura não existe ou não está publicado.</p>
+        <h2 className="text-2xl font-bold text-gray-700 mb-4">{t('event.notFound')}</h2>
+        <p className="text-gray-600 mb-6">{t('event.notFoundMessage')}</p>
         <Link href="/">
           <Button>
             <Home className="h-4 w-4 mr-2" />
-            Voltar para Início
+            {t('home.allEvents')}
           </Button>
         </Link>
       </div>
@@ -61,12 +64,15 @@ export default function PublicEvent() {
                 <h1 className="text-xl font-bold text-gray-900">{APP_TITLE}</h1>
               </div>
             </Link>
-            <Link href="/">
-              <Button variant="outline" size="sm">
-                <Home className="h-4 w-4 mr-2" />
-                Todos os Eventos
-              </Button>
-            </Link>
+            <div className="flex items-center gap-3">
+              <LanguageSwitcher />
+              <Link href="/">
+                <Button variant="outline" size="sm">
+                  <Home className="h-4 w-4 mr-2" />
+                  {t('home.allEvents')}
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </header>
@@ -105,7 +111,7 @@ export default function PublicEvent() {
             <div className="lg:col-span-2">
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Planta do Evento</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">{t('event.floorPlan')}</h3>
                   {event.floorPlanImageUrl ? (
                     <ZoomableFloorPlan
                       imageUrl={event.floorPlanImageUrl}
@@ -121,7 +127,7 @@ export default function PublicEvent() {
                     />
                   ) : (
                     <div className="bg-gray-100 rounded-lg p-12 text-center">
-                      <p className="text-gray-600">Planta do evento em breve</p>
+                      <p className="text-gray-600">{t('event.floorPlanSoon')}</p>
                     </div>
                   )}
                 </CardContent>
@@ -133,14 +139,14 @@ export default function PublicEvent() {
               <Card className="sticky top-24">
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-4">
-                    Expositores ({exhibitors?.length || 0})
+                    {t('event.exhibitors')} ({exhibitors?.length || 0})
                   </h3>
                   
                   {/* Search */}
                   <div className="relative mb-4">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                     <Input
-                      placeholder="Buscar expositor..."
+                      placeholder={t('event.searchExhibitor')}
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                       className="pl-10"
@@ -186,7 +192,7 @@ export default function PublicEvent() {
                                 <p className="text-xs text-gray-600">{exhibitor.category}</p>
                               )}
                               {exhibitor.boothNumber && (
-                                <p className="text-xs text-gray-500">Stand: {exhibitor.boothNumber}</p>
+                                <p className="text-xs text-gray-500">{t('event.booth')}: {exhibitor.boothNumber}</p>
                               )}
                             </div>
                           </div>
@@ -203,7 +209,7 @@ export default function PublicEvent() {
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   <ExternalLink className="h-3 w-3" />
-                                  Visitar site
+                                  {t('event.visitWebsite')}
                                 </a>
                               )}
                             </div>
@@ -213,7 +219,7 @@ export default function PublicEvent() {
                     ) : (
                       <div className="text-center py-8">
                         <p className="text-gray-600 text-sm">
-                          {searchTerm ? 'Nenhum expositor encontrado' : 'Nenhum expositor cadastrado'}
+                          {searchTerm ? t('event.noExhibitorsFound') : t('event.noExhibitors')}
                         </p>
                       </div>
                     )}
@@ -229,7 +235,7 @@ export default function PublicEvent() {
       <footer className="bg-gray-900 text-white py-6 mt-auto">
         <div className="container mx-auto px-4 text-center">
           <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} Portal ERP. Todos os direitos reservados.
+            {t('footer.rights', { year: new Date().getFullYear() })}
           </p>
         </div>
       </footer>

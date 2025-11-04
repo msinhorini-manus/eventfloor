@@ -1,0 +1,37 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "back": "Volver",
+    "search": "Buscar",
+    "noResults": "No se encontraron resultados"
+  },
+  "home": {
+    "title": "Explore Nuestros Eventos",
+    "subtitle": "Navegue por los planos interactivos de eventos de Portal ERP y descubra expositores, charlas y oportunidades de networking.",
+    "availableEvents": "Eventos Disponibles",
+    "adminArea": "Área de Administración",
+    "allEvents": "Todos los Eventos"
+  },
+  "event": {
+    "floorPlan": "Plano del Evento",
+    "floorPlanDescription": "Arrastre para mover, desplácese para hacer zoom, haga clic en los marcadores para ver detalles",
+    "floorPlanSoon": "Plano del evento próximamente",
+    "exhibitors": "Expositores",
+    "exhibitorsCount": "{{count}} expositor(es)",
+    "searchExhibitor": "Buscar expositor...",
+    "noExhibitors": "No hay expositores registrados",
+    "noExhibitorsFound": "No se encontraron expositores",
+    "visitWebsite": "Visitar sitio web",
+    "booth": "Stand",
+    "notFound": "Evento no encontrado",
+    "notFoundMessage": "El evento que busca no existe o no está publicado."
+  },
+  "footer": {
+    "rights": "© {{year}} Portal ERP. Todos los derechos reservados."
+  }
+}

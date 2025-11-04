@@ -47,3 +47,11 @@
 - [x] Adicionar funcionalidade de zoom na planta (visualização pública e admin)
 - [ ] Alterar título da aplicação de "Portal ERP - Gestão de Plantas de Eventos" para "Gestão de Plantas" (Nota: Alterar em Settings → General no Management UI)
 - [x] Aumentar tamanho do logo do expositor nos marcadores da planta (aumentado de 12 para 20)
+
+## Fase 3: Internacionalização (i18n)
+- [x] Instalar e configurar biblioteca i18next
+- [x] Criar arquivos de tradução (pt-BR, en, es)
+- [x] Implementar seletor de idioma no header
+- [x] Traduzir todas as páginas públicas
+- [ ] Traduzir área administrativa (pendente)
+- [x] Persistir preferência de idioma do usuário (localStorage)
