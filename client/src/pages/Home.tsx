@@ -29,12 +29,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="border-b bg-white">
+      {/* Header - ERP Summit Style */}
+      <header className="bg-[#0a1628] border-b border-white/10">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             {APP_LOGO && <img src={APP_LOGO} alt={APP_TITLE} className="h-10" />}
-            <h1 className="text-2xl font-bold text-gray-900">{APP_TITLE}</h1>
+            <h1 className="text-2xl font-bold text-white">{APP_TITLE}</h1>
           </div>
           <div className="flex items-center gap-4">
             <LanguageSwitcher />
@@ -42,13 +42,13 @@ export default function Home() {
               <>
                 {user?.role === 'admin' && (
                   <Link href="/admin">
-                    <Button variant="outline">{t('home.adminArea')}</Button>
+                    <Button variant="outline" className="border-[#f59e0b] text-[#f59e0b] hover:bg-[#f59e0b] hover:text-white">{t('home.adminArea')}</Button>
                   </Link>
                 )}
-                <span className="text-sm text-gray-600">Olá, {user?.name}</span>
+                <span className="text-sm text-white">Olá, {user?.name}</span>
               </>
             ) : (
-              <Button asChild>
+              <Button asChild className="bg-[#f59e0b] hover:bg-[#ff8c00] text-white">
                 <a href={getLoginUrl()}>Login</a>
               </Button>
             )}
@@ -56,13 +56,18 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+      {/* Hero Section - ERP Summit Style com gradiente azul escuro */}
+      <section className="bg-gradient-to-br from-[#0a1628] via-[#0f2137] to-[#142a46] py-20 relative overflow-hidden">
+        {/* Linhas geométricas decorativas */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500 rounded-full blur-3xl"></div>
+        </div>
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             {t('home.title')}
           </h2>
-          <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
             {t('home.subtitle')}
           </p>
         </div>
@@ -126,10 +131,10 @@ export default function Home() {
         </section>
       )}
 
-      {/* All Events List */}
-      <section className="py-16">
+      {/* All Events List - ERP Summit Style */}
+      <section className="py-16 bg-[#0a1628]">
         <div className="container mx-auto px-4">
-          <h3 className="text-3xl font-bold text-gray-900 mb-8">{t('home.allEvents')}</h3>
+          <h3 className="text-3xl font-bold text-white mb-8">{t('home.allEvents')}</h3>
           
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -204,8 +209,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 mt-auto">
+      {/* Footer - ERP Summit Style */}
+      <footer className="bg-[#050d18] text-white py-8 mt-auto border-t border-white/10">
         <div className="container mx-auto px-4 text-center">
           <p className="text-gray-400">
             {t('footer.rights', { year: new Date().getFullYear() })}

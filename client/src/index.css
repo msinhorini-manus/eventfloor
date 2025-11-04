@@ -43,74 +43,77 @@
 }
 
 :root {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
+  /* ERP Summit Colors - Laranja/Dourado para primary */
+  --primary: 25 95% 53%; /* #f59e0b - Laranja ERP Summit */
+  --primary-foreground: 0 0% 100%; /* Branco */
+  --sidebar-primary: 25 95% 53%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --chart-1: 25 95% 53%;
+  --chart-2: 25 95% 63%;
+  --chart-3: 25 95% 43%;
+  --chart-4: 25 95% 33%;
+  --chart-5: 25 95% 23%;
   --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.235 0.015 65);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.235 0.015 65);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.98 0.001 286.375);
-  --secondary-foreground: oklch(0.4 0.015 65);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.141 0.005 285.823);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.623 0.214 259.815);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.235 0.015 65);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.623 0.214 259.815);
+  /* Tema Dark - Azul Escuro ERP Summit */
+  --background: 215 45% 10%; /* #0a1628 - Azul escuro ERP Summit */
+  --foreground: 0 0% 100%; /* Branco */
+  --card: 215 40% 15%; /* Card um pouco mais claro */
+  --card-foreground: 0 0% 100%;
+  --popover: 215 40% 15%;
+  --popover-foreground: 0 0% 100%;
+  --secondary: 215 35% 20%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 215 30% 25%;
+  --muted-foreground: 0 0% 70%;
+  --accent: 25 95% 53%; /* Laranja para accent */
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 215 30% 25%;
+  --input: 215 30% 25%;
+  --ring: 25 95% 53%;
+  --sidebar: 215 40% 15%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-accent: 215 35% 20%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 215 30% 25%;
+  --sidebar-ring: 25 95% 53%;
 }
 
 .dark {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-500);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.85 0.005 65);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.85 0.005 65);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.85 0.005 65);
-  --secondary: oklch(0.24 0.006 286.033);
-  --secondary-foreground: oklch(0.7 0.005 65);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground:  oklch(0.92 0.005 65);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.488 0.243 264.376);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.85 0.005 65);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground:  oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.488 0.243 264.376);
+  /* Mantém as mesmas cores do tema principal (já é dark) */
+  --primary: 25 95% 53%;
+  --primary-foreground: 0 0% 100%;
+  --sidebar-primary: 25 95% 53%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --background: 215 45% 10%;
+  --foreground: 0 0% 100%;
+  --card: 215 40% 15%;
+  --card-foreground: 0 0% 100%;
+  --popover: 215 40% 15%;
+  --popover-foreground: 0 0% 100%;
+  --secondary: 215 35% 20%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 215 30% 25%;
+  --muted-foreground: 0 0% 70%;
+  --accent: 25 95% 53%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 215 30% 25%;
+  --input: 215 30% 25%;
+  --ring: 25 95% 53%;
+  --chart-1: 25 95% 53%;
+  --chart-2: 25 95% 63%;
+  --chart-3: 25 95% 43%;
+  --chart-4: 25 95% 33%;
+  --chart-5: 25 95% 23%;
+  --sidebar: 215 40% 15%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-accent: 215 35% 20%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 215 30% 25%;
+  --sidebar-ring: 25 95% 53%;
 }
 
 @layer base {

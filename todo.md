@@ -69,3 +69,10 @@
 - [x] Criar seção "Eventos em Breve" na página inicial
 - [x] Ordenar eventos por data (próximos primeiro)
 - [x] Destacar visualmente eventos que acontecerão nos próximos 30 dias
+
+## Identidade Visual
+- [x] Analisar identidade visual do site erpsummit.com
+- [x] Aplicar paleta de cores do ERP Summit (azul escuro #0a1628, laranja #f59e0b)
+- [x] Ajustar tipografia conforme o site de referência
+- [x] Atualizar componentes com o novo design system (tema dark)
+- [ ] Alterar nome da plataforma para "ERP Summit | Gestão de Plantas" (requer alteração em VITE_APP_TITLE via Management UI)
