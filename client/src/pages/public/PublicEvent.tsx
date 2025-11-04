@@ -55,21 +55,21 @@ export default function PublicEvent() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-[#0a1628]">
       {/* Header */}
-      <header className="bg-white border-b sticky top-0 z-50">
+      <header className="bg-[#0f1f3a] border-b border-gray-800 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link href="/">
               <div className="flex items-center gap-3 cursor-pointer">
                 {APP_LOGO && <img src={APP_LOGO} alt={APP_TITLE} className="h-10" />}
-                <h1 className="text-xl font-bold text-gray-900">{APP_TITLE}</h1>
+                <h1 className="text-xl font-bold text-white">{APP_TITLE}</h1>
               </div>
             </Link>
             <div className="flex items-center gap-3">
               <LanguageSwitcher />
               <Link href="/">
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="border-gray-700 text-white hover:bg-gray-800">
                   <Home className="h-4 w-4 mr-2" />
                   {t('home.allEvents')}
                 </Button>
@@ -80,10 +80,10 @@ export default function PublicEvent() {
       </header>
 
       {/* Event Header */}
-      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-12">
+      <section className="bg-gradient-to-br from-[#0f1f3a] to-[#1a2f4a] py-12 border-b border-gray-800">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">{event.name}</h2>
-          <div className="flex flex-wrap items-center gap-4 text-gray-700">
+          <h2 className="text-4xl font-bold text-white mb-4">{event.name}</h2>
+          <div className="flex flex-wrap items-center gap-4 text-gray-300">
             <span className="flex items-center gap-2">
               <Calendar className="h-5 w-5" />
               {new Date(event.dateStart).toLocaleDateString('pt-BR', {
@@ -100,7 +100,7 @@ export default function PublicEvent() {
             )}
           </div>
           {event.description && (
-            <p className="text-gray-700 mt-4 max-w-3xl">{event.description}</p>
+            <p className="text-gray-300 mt-4 max-w-3xl">{event.description}</p>
           )}
         </div>
       </section>
@@ -111,9 +111,9 @@ export default function PublicEvent() {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
             {/* Floor Plan - Maior destaque */}
             <div className="lg:col-span-3">
-              <Card>
+              <Card className="bg-[#0f1f3a] border-gray-800">
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{t('event.floorPlan')}</h3>
+                  <h3 className="text-xl font-bold text-white mb-4">{t('event.floorPlan')}</h3>
                   {event.floorPlanImageUrl ? (
                     <ZoomableFloorPlan
                       imageUrl={event.floorPlanImageUrl}
@@ -130,8 +130,8 @@ export default function PublicEvent() {
                       focusedExhibitorId={selectedExhibitor}
                     />
                   ) : (
-                    <div className="bg-gray-100 rounded-lg p-12 text-center">
-                      <p className="text-gray-600">{t('event.floorPlanSoon')}</p>
+                    <div className="bg-gray-800 rounded-lg p-12 text-center">
+                      <p className="text-gray-400">{t('event.floorPlanSoon')}</p>
                     </div>
                   )}
                 </CardContent>
@@ -140,9 +140,9 @@ export default function PublicEvent() {
 
             {/* Exhibitors List */}
             <div>
-              <Card className="sticky top-24">
+              <Card className="sticky top-24 bg-[#0f1f3a] border-gray-800">
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  <h3 className="text-xl font-bold text-white mb-4">
                     {t('event.exhibitors')} ({exhibitors?.length || 0})
                   </h3>
                   
@@ -153,7 +153,7 @@ export default function PublicEvent() {
                       placeholder={t('event.searchExhibitor')}
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10"
+                      className="pl-10 bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
                     />
                   </div>
 
@@ -169,10 +169,10 @@ export default function PublicEvent() {
                           key={exhibitor.id}
                           className={`p-3 border rounded-lg cursor-pointer transition-all duration-300 ${
                             selectedExhibitor === exhibitor.id
-                              ? 'bg-blue-50 border-blue-300'
+                              ? 'bg-[#f59e0b]/20 border-[#f59e0b]'
                               : hoveredExhibitor === exhibitor.id
-                              ? 'bg-yellow-50 border-yellow-400 shadow-lg'
-                              : 'hover:bg-gray-50'
+                              ? 'bg-yellow-500/20 border-yellow-400 shadow-lg'
+                              : 'bg-gray-800 border-gray-700 hover:bg-gray-700'
                           }`}
                           onClick={() => setSelectedExhibitor(
                             selectedExhibitor === exhibitor.id ? null : exhibitor.id
@@ -188,16 +188,16 @@ export default function PublicEvent() {
                                 className="w-12 h-12 object-contain rounded"
                               />
                             ) : (
-                              <div className="w-12 h-12 bg-gray-200 rounded flex items-center justify-center text-gray-400 text-xs font-bold">
+                              <div className="w-12 h-12 bg-gray-700 rounded flex items-center justify-center text-gray-400 text-xs font-bold">
                                 {exhibitor.name.substring(0, 2).toUpperCase()}
                               </div>
                             )}
                             <div className="flex-1 min-w-0">
-                              <h4 className="font-semibold text-gray-900 text-sm truncate">
+                              <h4 className="font-semibold text-white text-sm truncate">
                                 {exhibitor.name}
                               </h4>
                               {exhibitor.category && (
-                                <p className="text-xs text-gray-600">{exhibitor.category}</p>
+                                <p className="text-xs text-gray-400">{exhibitor.category}</p>
                               )}
                               {exhibitor.boothNumber && (
                                 <p className="text-xs text-gray-500">{t('event.booth')}: {exhibitor.boothNumber}</p>
@@ -206,14 +206,14 @@ export default function PublicEvent() {
                           </div>
                           
                           {selectedExhibitor === exhibitor.id && exhibitor.description && (
-                            <div className="mt-3 pt-3 border-t">
-                              <p className="text-sm text-gray-700">{exhibitor.description}</p>
+                            <div className="mt-3 pt-3 border-t border-gray-700">
+                              <p className="text-sm text-gray-300">{exhibitor.description}</p>
                               {exhibitor.website && (
                                 <a
                                   href={exhibitor.website}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700 mt-2"
+                                  className="inline-flex items-center gap-1 text-sm text-[#f59e0b] hover:text-[#fb923c] mt-2 transition-colors"
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   <ExternalLink className="h-3 w-3" />
@@ -226,7 +226,7 @@ export default function PublicEvent() {
                       ))
                     ) : (
                       <div className="text-center py-8">
-                        <p className="text-gray-600 text-sm">
+                        <p className="text-gray-400 text-sm">
                           {searchTerm ? t('event.noExhibitorsFound') : t('event.noExhibitors')}
                         </p>
                       </div>

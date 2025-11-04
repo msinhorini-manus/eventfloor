@@ -216,7 +216,7 @@ export default function ZoomableFloorPlan({
 
       {/* Instructions */}
       {showControls && (
-        <div className="absolute bottom-4 left-4 text-xs text-muted-foreground bg-background/80 backdrop-blur-sm px-3 py-2 rounded-lg">
+        <div className="absolute bottom-4 left-4 text-xs text-gray-300 bg-gray-900/80 backdrop-blur-sm px-3 py-2 rounded-lg border border-gray-700">
           <p>🖱️ Arraste para mover • 🔍 Scroll para zoom • Clique nos marcadores para detalhes</p>
         </div>
       )}

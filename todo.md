@@ -97,3 +97,9 @@
 - [x] Centralizar planta na localização do expositor ao clicar
 - [x] Aplicar zoom automático ao clicar em expositor (zoom 2x)
 - [x] Adicionar animação suave de transição ao centralizar (0.5s ease-in-out)
+
+## Identidade Visual - Página Pública do Evento
+- [ ] Aplicar tema dark do ERP Summit na página pública do evento
+- [ ] Atualizar header com cores do ERP Summit
+- [ ] Estilizar cards e seções com paleta de cores oficial
+- [ ] Ajustar botões e elementos interativos
