@@ -107,9 +107,9 @@ export default function PublicEvent() {
       {/* Main Content */}
       <section className="flex-1 py-8">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Floor Plan */}
-            <div className="lg:col-span-2">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            {/* Floor Plan - Maior destaque */}
+            <div className="lg:col-span-3">
               <Card>
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-4">{t('event.floorPlan')}</h3>

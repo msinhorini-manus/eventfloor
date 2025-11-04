@@ -82,3 +82,8 @@
 - [x] Adicionar efeitos de transição suave (hover) em todos os links
 - [x] Adicionar efeitos de escala e brilho nos cards de eventos
 - [x] Adicionar animações suaves em elementos interativos
+
+## Melhorias de Layout
+- [x] Aumentar área da planta na página pública (dar mais destaque)
+- [x] Reduzir largura da coluna de expositores
+- [x] Melhorar proporção entre planta e sidebar (alterado de 2:1 para 3:1)
