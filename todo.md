@@ -99,7 +99,12 @@
 - [x] Adicionar animação suave de transição ao centralizar (0.5s ease-in-out)
 
 ## Identidade Visual - Página Pública do Evento
-- [ ] Aplicar tema dark do ERP Summit na página pública do evento
-- [ ] Atualizar header com cores do ERP Summit
-- [ ] Estilizar cards e seções com paleta de cores oficial
-- [ ] Ajustar botões e elementos interativos
+- [x] Aplicar tema dark do ERP Summit na página pública do evento
+- [x] Atualizar header com cores do ERP Summit
+- [x] Estilizar cards e seções com paleta de cores oficial
+- [x] Ajustar botões e elementos interativos
+
+## Segurança e UX - Área Administrativa
+- [x] Remover botão "Admin Área" da página Home (visitantes não devem ver)
+- [x] Remover botão "Admin Área" da página pública do evento
+- [x] Manter acesso administrativo apenas via URL direta /admin

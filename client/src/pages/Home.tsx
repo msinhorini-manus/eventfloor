@@ -38,20 +38,6 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-4">
             <LanguageSwitcher />
-            {isAuthenticated ? (
-              <>
-                {user?.role === 'admin' && (
-                  <Link href="/admin">
-                    <Button variant="outline" className="border-[#f59e0b] text-[#f59e0b] hover:bg-[#f59e0b] hover:text-white">{t('home.adminArea')}</Button>
-                  </Link>
-                )}
-                <span className="text-sm text-white">Olá, {user?.name}</span>
-              </>
-            ) : (
-              <Button asChild className="bg-[#f59e0b] hover:bg-[#ff8c00] text-white">
-                <a href={getLoginUrl()}>Login</a>
-              </Button>
-            )}
           </div>
         </div>
       </header>
