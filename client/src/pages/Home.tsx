@@ -5,8 +5,11 @@ import { Calendar, MapPin, Users } from "lucide-react";
 import { APP_LOGO, APP_TITLE, getLoginUrl } from "@/const";
 import { trpc } from "@/lib/trpc";
 import { Link } from "wouter";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function Home() {
+  const { t } = useTranslation();
   const { user, isAuthenticated } = useAuth();
   const { data: events, isLoading } = trpc.events.listPublished.useQuery();
 
@@ -20,11 +23,12 @@ export default function Home() {
             <h1 className="text-2xl font-bold text-gray-900">{APP_TITLE}</h1>
           </div>
           <div className="flex items-center gap-4">
+            <LanguageSwitcher />
             {isAuthenticated ? (
               <>
                 {user?.role === 'admin' && (
                   <Link href="/admin">
-                    <Button variant="outline">Área Admin</Button>
+                    <Button variant="outline">{t('home.adminArea')}</Button>
                   </Link>
                 )}
                 <span className="text-sm text-gray-600">Olá, {user?.name}</span>
@@ -42,11 +46,10 @@ export default function Home() {
       <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Explore Nossos Eventos
+            {t('home.title')}
           </h2>
           <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
-            Navegue pelas plantas interativas dos eventos do Portal ERP e descubra expositores, 
-            palestras e oportunidades de networking.
+            {t('home.subtitle')}
           </p>
         </div>
       </section>
@@ -54,7 +57,7 @@ export default function Home() {
       {/* Events List */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h3 className="text-3xl font-bold text-gray-900 mb-8">Eventos Disponíveis</h3>
+          <h3 className="text-3xl font-bold text-gray-900 mb-8">{t('home.availableEvents')}</h3>
           
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -118,10 +121,10 @@ export default function Home() {
               <CardContent className="py-12 text-center">
                 <Users className="h-16 w-16 text-gray-400 mx-auto mb-4" />
                 <h4 className="text-xl font-semibold text-gray-700 mb-2">
-                  Nenhum evento disponível
+                  {t('common.noResults')}
                 </h4>
                 <p className="text-gray-600">
-                  Novos eventos serão publicados em breve.
+                  {t('home.subtitle')}
                 </p>
               </CardContent>
             </Card>
@@ -133,7 +136,7 @@ export default function Home() {
       <footer className="bg-gray-900 text-white py-8 mt-auto">
         <div className="container mx-auto px-4 text-center">
           <p className="text-gray-400">
-            © {new Date().getFullYear()} Portal ERP. Todos os direitos reservados.
+            {t('footer.rights', { year: new Date().getFullYear() })}
           </p>
         </div>
       </footer>
