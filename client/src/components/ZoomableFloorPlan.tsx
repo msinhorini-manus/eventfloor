@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Button } from "./ui/button";
-import { ZoomIn, ZoomOut, Maximize2 } from "lucide-react";
+import { ZoomIn, ZoomOut, Maximize2, X, ExternalLink, MapPin, Tag } from "lucide-react";
 
 interface ZoomableFloorPlanProps {
   imageUrl: string;
@@ -10,6 +10,10 @@ interface ZoomableFloorPlanProps {
     logoUrl?: string;
     positionX: number;
     positionY: number;
+    category?: string | null;
+    description?: string | null;
+    website?: string | null;
+    boothNumber?: string | null;
   }>;
   onExhibitorClick?: (exhibitorId: number) => void;
   showControls?: boolean;
@@ -29,6 +33,7 @@ export default function ZoomableFloorPlan({
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [popoverExhibitorId, setPopoverExhibitorId] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleZoomIn = () => {
@@ -153,6 +158,7 @@ export default function ZoomableFloorPlan({
               }}
               onClick={(e) => {
                 e.stopPropagation();
+                setPopoverExhibitorId(popoverExhibitorId === exhibitor.id ? null : exhibitor.id);
                 if (onExhibitorClick) {
                   onExhibitorClick(exhibitor.id);
                 }
@@ -180,7 +186,7 @@ export default function ZoomableFloorPlan({
                   }`} />
                 )}
 
-                {/* Tooltip */}
+                {/* Tooltip (hover) */}
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                   <div className="bg-gray-900 text-white text-sm px-3 py-2 rounded-lg whitespace-nowrap shadow-xl">
                     {exhibitor.name}
@@ -189,6 +195,70 @@ export default function ZoomableFloorPlan({
                     </div>
                   </div>
                 </div>
+
+                {/* Popover (click) */}
+                {popoverExhibitorId === exhibitor.id && (
+                  <div 
+                    className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 z-50 pointer-events-auto"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div className="bg-[#0f1f3a] border-2 border-[#c8ff00] rounded-lg shadow-2xl shadow-[#c8ff00]/20 p-4 min-w-[280px] max-w-[320px]">
+                      {/* Header */}
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex-1">
+                          <h3 className="text-lg font-bold text-white mb-1">{exhibitor.name}</h3>
+                          {exhibitor.boothNumber && (
+                            <div className="flex items-center gap-1 text-sm text-gray-300">
+                              <MapPin className="h-3 w-3" />
+                              <span>Stand {exhibitor.boothNumber}</span>
+                            </div>
+                          )}
+                        </div>
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          className="h-6 w-6 text-gray-400 hover:text-white hover:bg-white/10"
+                          onClick={() => setPopoverExhibitorId(null)}
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+
+                      {/* Category */}
+                      {exhibitor.category && (
+                        <div className="flex items-center gap-2 mb-3 text-sm">
+                          <Tag className="h-3 w-3 text-[#c8ff00]" />
+                          <span className="text-gray-300">{exhibitor.category}</span>
+                        </div>
+                      )}
+
+                      {/* Description */}
+                      {exhibitor.description && (
+                        <p className="text-sm text-gray-300 mb-3 line-clamp-3">
+                          {exhibitor.description}
+                        </p>
+                      )}
+
+                      {/* Website */}
+                      {exhibitor.website && (
+                        <a
+                          href={exhibitor.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-sm text-[#c8ff00] hover:text-[#d4ff00] transition-colors"
+                        >
+                          <ExternalLink className="h-3 w-3" />
+                          <span>Visitar site</span>
+                        </a>
+                      )}
+
+                      {/* Arrow */}
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-2">
+                        <div className="border-8 border-transparent border-t-[#c8ff00]" />
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ))}

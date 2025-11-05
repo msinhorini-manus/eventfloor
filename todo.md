@@ -266,3 +266,18 @@
 - [x] Aumentar tamanho dos ícones - h-5 w-5 md:h-6 md:w-6 (antes era h-4 w-4 md:h-5 md:w-5)
 - [x] Aumentar gap entre botões - gap-2 md:gap-3 (antes era gap-1.5 md:gap-2)
 - [x] Testar ergonomia em mobile - Aguardando republicação para teste final
+
+## Feature: Popover de Informações do Expositor
+- [x] Criar componente ExhibitorPopover - Integrado diretamente no ZoomableFloorPlan
+- [x] Adicionar estado para controlar popover aberto/fechado - popoverExhibitorId
+- [x] Implementar posicionamento automático próximo ao logo - absolute bottom-full
+- [x] Exibir nome do expositor
+- [x] Exibir número do estande (booth) - com ícone MapPin
+- [x] Exibir categoria - com ícone Tag
+- [x] Exibir descrição - line-clamp-3
+- [x] Exibir link do site (se disponível) - com ícone ExternalLink
+- [x] Adicionar botão de fechar - ícone X
+- [x] Estilizar com identidade visual ERP Summit - bg-[#0f1f3a], border-[#c8ff00], shadow-[#c8ff00]/20
+- [x] Adicionar campos ao ZoomableFloorPlanProps - category, description, website, boothNumber
+- [x] Atualizar PublicEvent para passar dados adicionais
+- [x] Testar interação (abrir/fechar ao clicar) - Aguardando republicação para teste final

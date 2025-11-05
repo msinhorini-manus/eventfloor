@@ -121,6 +121,10 @@ export default function PublicEvent() {
                         logoUrl: ex.logoUrl ?? undefined,
                         positionX: ex.positionX!,
                         positionY: ex.positionY!,
+                        category: ex.category,
+                        description: ex.description,
+                        website: ex.website,
+                        boothNumber: ex.boothNumber,
                       })) || []}
                       onExhibitorClick={(id) => setSelectedExhibitor(selectedExhibitor === id ? null : id)}
                       showControls={true}
