@@ -281,3 +281,11 @@
 - [x] Adicionar campos ao ZoomableFloorPlanProps - category, description, website, boothNumber
 - [x] Atualizar PublicEvent para passar dados adicionais
 - [x] Testar interação (abrir/fechar ao clicar) - Aguardando republicação para teste final
+
+## Reposicionamento dos Botões para Fora da Planta
+- [x] Modificar estrutura do ZoomableFloorPlan - Adicionado prop onControlsReady
+- [x] Atualizar PublicEvent para renderizar botões ao lado do título - useState + onControlsReady
+- [x] Mudar layout dos botões de vertical para horizontal - flex gap-2
+- [x] Alinhar botões à direita do título "Plano del Evento" - justify-between
+- [x] Ajustar espaçamento e responsividade - h-9 w-9 md:h-10 md:w-10
+- [x] Testar em desktop e mobile - Aguardando republicação para teste final

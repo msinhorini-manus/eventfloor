@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { trpc } from "@/lib/trpc";
 import { useParams, Link } from "wouter";
-import { Calendar, MapPin, Loader2, Search, Home, ExternalLink } from "lucide-react";
+import { Calendar, MapPin, Loader2, Search, Home, ExternalLink, ZoomIn, ZoomOut, Maximize2 } from "lucide-react";
 import { APP_LOGO, APP_TITLE } from "@/const";
 import { useState } from "react";
 import ZoomableFloorPlan from "@/components/ZoomableFloorPlan";
@@ -18,6 +18,11 @@ export default function PublicEvent() {
   const params = useParams();
   const slug = params.slug!;
   const [searchTerm, setSearchTerm] = useState("");
+  const [floorPlanControls, setFloorPlanControls] = useState<{
+    zoomIn: () => void;
+    zoomOut: () => void;
+    reset: () => void;
+  } | null>(null);
   const [selectedExhibitor, setSelectedExhibitor] = useState<number | null>(null);
   const [hoveredExhibitor, setHoveredExhibitor] = useState<number | null>(null);
 
@@ -111,30 +116,71 @@ export default function PublicEvent() {
             <div className="lg:col-span-3">
               <Card className="bg-[#0f1f3a] border-gray-800 card-border-gradient">
                 <CardContent className="p-4 md:p-6">
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4">{t('event.floorPlan')}</h3>
                   {event.floorPlanImageUrl ? (
-                    <ZoomableFloorPlan
-                      imageUrl={event.floorPlanImageUrl}
-                      exhibitors={exhibitors?.filter(ex => ex.positionX && ex.positionY).map(ex => ({
-                        id: ex.id,
-                        name: ex.name,
-                        logoUrl: ex.logoUrl ?? undefined,
-                        positionX: ex.positionX!,
-                        positionY: ex.positionY!,
-                        category: ex.category,
-                        description: ex.description,
-                        website: ex.website,
-                        boothNumber: ex.boothNumber,
-                      })) || []}
-                      onExhibitorClick={(id) => setSelectedExhibitor(selectedExhibitor === id ? null : id)}
-                      showControls={true}
-                      hoveredExhibitorId={hoveredExhibitor}
-                      focusedExhibitorId={selectedExhibitor}
-                    />
+                    <>
+                      {/* Header with title and controls */}
+                      <div className="flex items-center justify-between mb-3 md:mb-4">
+                        <h3 className="text-lg md:text-xl font-bold text-white">{t('event.floorPlan')}</h3>
+                        {floorPlanControls && (
+                          <div className="flex gap-2">
+                            <Button
+                              size="icon"
+                              variant="secondary"
+                              onClick={floorPlanControls.zoomIn}
+                              title="Zoom In"
+                              className="bg-white/10 hover:bg-white/20 border-white/30 text-white h-9 w-9 md:h-10 md:w-10"
+                            >
+                              <ZoomIn className="h-4 w-4 md:h-5 md:w-5" />
+                            </Button>
+                            <Button
+                              size="icon"
+                              variant="secondary"
+                              onClick={floorPlanControls.zoomOut}
+                              title="Zoom Out"
+                              className="bg-white/10 hover:bg-white/20 border-white/30 text-white h-9 w-9 md:h-10 md:w-10"
+                            >
+                              <ZoomOut className="h-4 w-4 md:h-5 md:w-5" />
+                            </Button>
+                            <Button
+                              size="icon"
+                              variant="secondary"
+                              onClick={floorPlanControls.reset}
+                              title="Reset"
+                              className="bg-white/10 hover:bg-white/20 border-white/30 text-white h-9 w-9 md:h-10 md:w-10"
+                            >
+                              <Maximize2 className="h-4 w-4 md:h-5 md:w-5" />
+                            </Button>
+                          </div>
+                        )}
+                      </div>
+                      {/* Floor Plan */}
+                      <ZoomableFloorPlan
+                        imageUrl={event.floorPlanImageUrl}
+                        exhibitors={exhibitors?.filter(ex => ex.positionX && ex.positionY).map(ex => ({
+                          id: ex.id,
+                          name: ex.name,
+                          logoUrl: ex.logoUrl ?? undefined,
+                          positionX: ex.positionX!,
+                          positionY: ex.positionY!,
+                          category: ex.category,
+                          description: ex.description,
+                          website: ex.website,
+                          boothNumber: ex.boothNumber,
+                        })) || []}
+                        onExhibitorClick={(id) => setSelectedExhibitor(selectedExhibitor === id ? null : id)}
+                        showControls={false}
+                        hoveredExhibitorId={hoveredExhibitor}
+                        focusedExhibitorId={selectedExhibitor}
+                        onControlsReady={setFloorPlanControls}
+                      />
+                    </>
                   ) : (
-                    <div className="bg-gray-800 rounded-lg p-12 text-center">
-                      <p className="text-gray-400">{t('event.floorPlanSoon')}</p>
-                    </div>
+                    <>
+                      <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4">{t('event.floorPlan')}</h3>
+                      <div className="bg-gray-800 rounded-lg p-12 text-center">
+                        <p className="text-gray-400">{t('event.floorPlanSoon')}</p>
+                      </div>
+                    </>
                   )}
                 </CardContent>
               </Card>

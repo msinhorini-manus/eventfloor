@@ -19,6 +19,11 @@ interface ZoomableFloorPlanProps {
   showControls?: boolean;
   hoveredExhibitorId?: number | null;
   focusedExhibitorId?: number | null;
+  onControlsReady?: (controls: {
+    zoomIn: () => void;
+    zoomOut: () => void;
+    reset: () => void;
+  }) => void;
 }
 
 export default function ZoomableFloorPlan({
@@ -28,6 +33,7 @@ export default function ZoomableFloorPlan({
   showControls = true,
   hoveredExhibitorId = null,
   focusedExhibitorId = null,
+  onControlsReady,
 }: ZoomableFloorPlanProps) {
   const [scale, setScale] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -84,12 +90,23 @@ export default function ZoomableFloorPlan({
     return () => window.removeEventListener("mouseup", handleMouseUpGlobal);
   }, []);
 
+  // Expose control functions to parent
+  useEffect(() => {
+    if (onControlsReady) {
+      onControlsReady({
+        zoomIn: handleZoomIn,
+        zoomOut: handleZoomOut,
+        reset: handleReset,
+      });
+    }
+  }, [onControlsReady]);
+
   // Zoom automático removido - usuário controla zoom manualmente
 
   return (
     <div className="relative w-full h-full min-h-[500px] bg-muted/20 rounded-lg overflow-hidden border">
-      {/* Zoom Controls */}
-      {showControls && (
+      {/* Zoom Controls - Only render if onControlsReady is NOT provided */}
+      {showControls && !onControlsReady && (
         <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-10 flex flex-col gap-2 md:gap-3">
           <Button
             size="icon"
