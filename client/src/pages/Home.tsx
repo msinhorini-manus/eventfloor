@@ -71,7 +71,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {upcomingEvents.map((event) => (
                 <Link key={event.id} href={`/${event.slug}`}>
-                  <Card className="hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer h-full border-2 border-orange-200 hover:border-orange-400 hover:scale-105">
+                  <Card className="hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer h-full border-2 border-orange-200 hover:border-orange-400 hover:scale-105 glow-on-hover">
                     <div className="relative">
                       {event.floorPlanImageUrl && (
                         <div className="aspect-video w-full overflow-hidden rounded-t-lg">
@@ -142,7 +142,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {otherEvents.map((event) => (
                 <Link key={event.id} href={`/${event.slug}`}>
-                  <Card className="hover:shadow-lg transition-all duration-300 ease-in-out cursor-pointer h-full hover:scale-105 bg-card/80 hover:bg-card border border-border hover:border-primary/50">
+                  <Card className="hover:shadow-lg transition-all duration-300 ease-in-out cursor-pointer h-full hover:scale-105 bg-card/80 hover:bg-card card-border-gradient glow-on-hover">
                     {event.floorPlanImageUrl && (
                       <div className="aspect-video w-full overflow-hidden rounded-t-lg">
                         <img 

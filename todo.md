@@ -169,3 +169,17 @@
 - [x] Verificar se const.ts está sendo importado corretamente
 - [x] Corrigir referências ao logo no header
 - [x] Testar que título e logo aparecem corretamente em todas as páginas
+
+## Identidade Visual - ERP Summit
+- [x] Acessar erpsummit.com.br e analisar identidade visual
+- [x] Extrair paleta de cores (primária, secundária, acentos)
+- [x] Identificar tipografia (fontes, tamanhos, pesos)
+- [x] Analisar estilo de botões, cards e componentes
+- [x] Aplicar cores no index.css (CSS variables)
+- [x] Atualizar componentes com novos estilos
+- [x] Substituir laranja (#f59e0b) por amarelo-verde (#c8ff00)
+- [x] Adicionar bordas coloridas nos cards (card-border-gradient)
+- [x] Implementar glow effect nos hovers
+- [x] Atualizar marcadores da planta com nova cor
+- [x] Atualizar links e elementos de destaque
+- [x] Testar consistência visual em todas as páginas

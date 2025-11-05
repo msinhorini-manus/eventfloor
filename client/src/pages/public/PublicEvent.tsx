@@ -112,7 +112,7 @@ export default function PublicEvent() {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
             {/* Floor Plan - Maior destaque */}
             <div className="lg:col-span-3">
-              <Card className="bg-[#0f1f3a] border-gray-800">
+              <Card className="bg-[#0f1f3a] border-gray-800 card-border-gradient">
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold text-white mb-4">{t('event.floorPlan')}</h3>
                   {event.floorPlanImageUrl ? (
@@ -141,7 +141,7 @@ export default function PublicEvent() {
 
             {/* Exhibitors List */}
             <div>
-              <Card className="sticky top-24 bg-[#0f1f3a] border-gray-800">
+              <Card className="sticky top-24 bg-[#0f1f3a] border-gray-800 card-border-gradient">
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold text-white mb-4">
                     {t('event.exhibitors')} ({exhibitors?.length || 0})
@@ -170,7 +170,7 @@ export default function PublicEvent() {
                           key={exhibitor.id}
                           className={`p-3 border rounded-lg cursor-pointer transition-all duration-300 ${
                             selectedExhibitor === exhibitor.id
-                              ? 'bg-[#f59e0b]/20 border-[#f59e0b]'
+                              ? 'bg-[#c8ff00]/30 border-[#c8ff00] shadow-lg shadow-[#c8ff00]/20'
                               : hoveredExhibitor === exhibitor.id
                               ? 'bg-yellow-500/20 border-yellow-400 shadow-lg'
                               : 'bg-gray-800 border-gray-700 hover:bg-gray-700'
@@ -214,7 +214,7 @@ export default function PublicEvent() {
                                   href={exhibitor.website}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 text-sm text-[#f59e0b] hover:text-[#fb923c] mt-2 transition-colors"
+                                  className="inline-flex items-center gap-1 text-sm text-[#c8ff00] hover:text-[#d4ff00] mt-2 transition-colors"
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   <ExternalLink className="h-3 w-3" />

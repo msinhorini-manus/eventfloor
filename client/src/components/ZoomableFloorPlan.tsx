@@ -160,7 +160,7 @@ export default function ZoomableFloorPlan({
                 {exhibitor.logoUrl ? (
                   <div className={`w-20 h-20 rounded-full bg-white border-4 shadow-lg overflow-hidden transition-all duration-300 ${
                     hoveredExhibitorId === exhibitor.id 
-                      ? 'border-yellow-400 scale-125 shadow-2xl ring-4 ring-yellow-300 animate-pulse' 
+                      ? 'border-[#c8ff00] scale-125 shadow-2xl ring-4 ring-[#c8ff00]/50 animate-pulse shadow-[#c8ff00]/30' 
                       : 'border-red-500 hover:scale-110'
                   }`}>
                     <img
@@ -172,7 +172,7 @@ export default function ZoomableFloorPlan({
                 ) : (
                   <div className={`w-10 h-10 rounded-full bg-red-500 border-4 border-white shadow-lg transition-all duration-300 ${
                     hoveredExhibitorId === exhibitor.id 
-                      ? 'scale-150 shadow-2xl ring-4 ring-yellow-300 animate-pulse' 
+                      ? 'scale-150 shadow-2xl ring-4 ring-[#c8ff00]/50 animate-pulse shadow-[#c8ff00]/30' 
                       : 'hover:scale-110'
                   }`} />
                 )}

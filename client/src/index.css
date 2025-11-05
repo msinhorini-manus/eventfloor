@@ -43,16 +43,16 @@
 }
 
 :root {
-  /* ERP Summit Colors - Laranja/Dourado para primary */
-  --primary: 25 95% 53%; /* #f59e0b - Laranja ERP Summit */
-  --primary-foreground: 0 0% 100%; /* Branco */
-  --sidebar-primary: 25 95% 53%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --chart-1: 25 95% 53%;
-  --chart-2: 25 95% 63%;
-  --chart-3: 25 95% 43%;
-  --chart-4: 25 95% 33%;
-  --chart-5: 25 95% 23%;
+  /* ERP Summit Colors - Amarelo-Verde Vibrante para primary */
+  --primary: 75 100% 63%; /* #c8ff00 - Amarelo-verde ERP Summit */
+  --primary-foreground: 215 45% 10%; /* Azul escuro para contraste */
+  --sidebar-primary: 75 100% 63%;
+  --sidebar-primary-foreground: 215 45% 10%;
+  --chart-1: 75 100% 63%;
+  --chart-2: 75 100% 73%;
+  --chart-3: 75 100% 53%;
+  --chart-4: 75 100% 43%;
+  --chart-5: 75 100% 33%;
   --radius: 0.65rem;
   /* Tema Dark - Azul Escuro ERP Summit */
   --background: 215 45% 10%; /* #0a1628 - Azul escuro ERP Summit */
@@ -65,27 +65,27 @@
   --secondary-foreground: 0 0% 100%;
   --muted: 215 30% 25%;
   --muted-foreground: 0 0% 70%;
-  --accent: 25 95% 53%; /* Laranja para accent */
-  --accent-foreground: 0 0% 100%;
+  --accent: 75 100% 63%; /* Amarelo-verde para accent */
+  --accent-foreground: 215 45% 10%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
   --border: 215 30% 25%;
   --input: 215 30% 25%;
-  --ring: 25 95% 53%;
+  --ring: 75 100% 63%;
   --sidebar: 215 40% 15%;
   --sidebar-foreground: 0 0% 100%;
   --sidebar-accent: 215 35% 20%;
   --sidebar-accent-foreground: 0 0% 100%;
   --sidebar-border: 215 30% 25%;
-  --sidebar-ring: 25 95% 53%;
+  --sidebar-ring: 75 100% 63%;
 }
 
 .dark {
   /* Mantém as mesmas cores do tema principal (já é dark) */
-  --primary: 25 95% 53%;
-  --primary-foreground: 0 0% 100%;
-  --sidebar-primary: 25 95% 53%;
-  --sidebar-primary-foreground: 0 0% 100%;
+  --primary: 75 100% 63%;
+  --primary-foreground: 215 45% 10%;
+  --sidebar-primary: 75 100% 63%;
+  --sidebar-primary-foreground: 215 45% 10%;
   --background: 215 45% 10%;
   --foreground: 0 0% 100%;
   --card: 215 40% 15%;
@@ -96,24 +96,24 @@
   --secondary-foreground: 0 0% 100%;
   --muted: 215 30% 25%;
   --muted-foreground: 0 0% 70%;
-  --accent: 25 95% 53%;
-  --accent-foreground: 0 0% 100%;
+  --accent: 75 100% 63%;
+  --accent-foreground: 215 45% 10%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
   --border: 215 30% 25%;
   --input: 215 30% 25%;
-  --ring: 25 95% 53%;
-  --chart-1: 25 95% 53%;
-  --chart-2: 25 95% 63%;
-  --chart-3: 25 95% 43%;
-  --chart-4: 25 95% 33%;
-  --chart-5: 25 95% 23%;
+  --ring: 75 100% 63%;
+  --chart-1: 75 100% 63%;
+  --chart-2: 75 100% 73%;
+  --chart-3: 75 100% 53%;
+  --chart-4: 75 100% 43%;
+  --chart-5: 75 100% 33%;
   --sidebar: 215 40% 15%;
   --sidebar-foreground: 0 0% 100%;
   --sidebar-accent: 215 35% 20%;
   --sidebar-accent-foreground: 0 0% 100%;
   --sidebar-border: 215 30% 25%;
-  --sidebar-ring: 25 95% 53%;
+  --sidebar-ring: 75 100% 63%;
 }
 
 @layer base {
@@ -195,4 +195,29 @@
       max-width: 1280px; /* Standard content width */
     }
   }
+}
+
+/* ERP Summit - Bordas coloridas para cards */
+.card-border-gradient {
+  position: relative;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.card-border-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, #c8ff00, #ff8c00, #ff4444, #8b5cf6);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Glow effect para hover */
+.glow-on-hover:hover {
+  box-shadow: 0 0 20px rgba(200, 255, 0, 0.5), 0 0 40px rgba(200, 255, 0, 0.3);
 }
