@@ -257,3 +257,12 @@
 - [x] Ajustar event header - text-2xl md:text-4xl, py-6 md:py-12
 - [x] Ajustar padding dos cards - p-4 md:p-6
 - [x] Testar em diferentes breakpoints (sm, md, lg) - Aguardando republicação para teste final
+
+## Reposicionamento dos Botões de Controle da Planta
+- [x] Mudar posição de top-right para bottom-right
+- [x] Ajustar para mobile: bottom-4 right-4
+- [x] Ajustar para desktop: bottom-6 right-6
+- [x] Aumentar tamanho dos botões - h-10 w-10 md:h-12 md:w-12 (antes era h-9 w-9 md:h-10 md:w-10)
+- [x] Aumentar tamanho dos ícones - h-5 w-5 md:h-6 md:w-6 (antes era h-4 w-4 md:h-5 md:w-5)
+- [x] Aumentar gap entre botões - gap-2 md:gap-3 (antes era gap-1.5 md:gap-2)
+- [x] Testar ergonomia em mobile - Aguardando republicação para teste final

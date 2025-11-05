@@ -85,33 +85,33 @@ export default function ZoomableFloorPlan({
     <div className="relative w-full h-full min-h-[500px] bg-muted/20 rounded-lg overflow-hidden border">
       {/* Zoom Controls */}
       {showControls && (
-        <div className="absolute top-2 right-2 md:top-4 md:right-4 z-10 flex flex-col gap-1.5 md:gap-2">
+        <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-10 flex flex-col gap-2 md:gap-3">
           <Button
             size="icon"
             variant="secondary"
             onClick={handleZoomIn}
             title="Zoom In"
-            className="bg-white/10 hover:bg-white/20 border-white/30 text-white h-9 w-9 md:h-10 md:w-10"
+            className="bg-white/10 hover:bg-white/20 border-white/30 text-white h-10 w-10 md:h-12 md:w-12"
           >
-            <ZoomIn className="h-4 w-4 md:h-5 md:w-5" />
+            <ZoomIn className="h-5 w-5 md:h-6 md:w-6" />
           </Button>
           <Button
             size="icon"
             variant="secondary"
             onClick={handleZoomOut}
             title="Zoom Out"
-            className="bg-white/10 hover:bg-white/20 border-white/30 text-white h-9 w-9 md:h-10 md:w-10"
+            className="bg-white/10 hover:bg-white/20 border-white/30 text-white h-10 w-10 md:h-12 md:w-12"
           >
-            <ZoomOut className="h-4 w-4 md:h-5 md:w-5" />
+            <ZoomOut className="h-5 w-5 md:h-6 md:w-6" />
           </Button>
           <Button
             size="icon"
             variant="secondary"
             onClick={handleReset}
             title="Reset"
-            className="bg-white/10 hover:bg-white/20 border-white/30 text-white h-9 w-9 md:h-10 md:w-10"
+            className="bg-white/10 hover:bg-white/20 border-white/30 text-white h-10 w-10 md:h-12 md:w-12"
           >
-            <Maximize2 className="h-4 w-4 md:h-5 md:w-5" />
+            <Maximize2 className="h-5 w-5 md:h-6 md:w-6" />
           </Button>
         </div>
       )}
