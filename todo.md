@@ -183,3 +183,13 @@
 - [x] Atualizar marcadores da planta com nova cor
 - [x] Atualizar links e elementos de destaque
 - [x] Testar consistência visual em todas as páginas
+
+## Bug: Data Incorreta
+- [x] Investigar problema de timezone na exibição de datas
+- [x] Criar funções utilitárias formatEventDate e formatShortDate com timeZone: 'UTC'
+- [x] Corrigir formatação de data na página pública do evento
+- [x] Corrigir formatação de data na página Home
+- [x] Corrigir formatação de data no Dashboard admin
+- [x] Corrigir formatação de data no EventsList admin
+- [x] Corrigir formatação de data no EventDetail admin
+- [x] Testar que data 17 de março de 2026 aparece corretamente

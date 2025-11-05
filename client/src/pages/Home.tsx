@@ -8,6 +8,7 @@ import { Link } from "wouter";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import SponsorsSection from "@/components/SponsorsSection";
+import { formatEventDate } from "@/lib/dateUtils";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -90,11 +91,7 @@ export default function Home() {
                       <CardTitle className="text-xl">{event.name}</CardTitle>
                       <CardDescription className="flex items-center gap-2 text-sm font-medium text-orange-600">
                         <Calendar className="h-4 w-4" />
-                        {new Date(event.dateStart).toLocaleDateString('pt-BR', {
-                          day: '2-digit',
-                          month: 'long',
-                          year: 'numeric'
-                        })}
+                        {formatEventDate(event.dateStart, 'pt-BR')}
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -156,11 +153,7 @@ export default function Home() {
                       <CardTitle className="text-xl text-white">{event.name}</CardTitle>
                       <CardDescription className="flex items-center gap-2 text-sm text-gray-300">
                         <Calendar className="h-4 w-4" />
-                        {new Date(event.dateStart).toLocaleDateString('pt-BR', {
-                          day: '2-digit',
-                          month: 'long',
-                          year: 'numeric'
-                        })}
+                        {formatEventDate(event.dateStart, 'pt-BR')}
                       </CardDescription>
                     </CardHeader>
                     <CardContent>

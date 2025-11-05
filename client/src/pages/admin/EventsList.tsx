@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, MapPin, Plus } from "lucide-react";
 import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
+import { formatShortDate } from "@/lib/dateUtils";
 
 export default function EventsList() {
   const { data: events, isLoading } = trpc.events.listAll.useQuery();
@@ -59,7 +60,7 @@ export default function EventsList() {
                         <div className="flex items-center gap-4 text-sm text-gray-600 mt-1">
                           <span className="flex items-center gap-1">
                             <Calendar className="h-4 w-4" />
-                            {new Date(event.dateStart).toLocaleDateString('pt-BR')}
+                            {formatShortDate(event.dateStart, 'pt-BR')}
                           </span>
                           {event.location && (
                             <span className="flex items-center gap-1">

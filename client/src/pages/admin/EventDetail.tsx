@@ -5,6 +5,7 @@ import { trpc } from "@/lib/trpc";
 import { useLocation, useParams, Link } from "wouter";
 import { Calendar, MapPin, Loader2, Edit, Trash2, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
+import { formatEventDate, formatShortDate } from "@/lib/dateUtils";
 import { useState } from "react";
 import ZoomableFloorPlan from "@/components/ZoomableFloorPlan";
 import {
@@ -75,11 +76,7 @@ export default function EventDetail() {
             <div className="flex items-center gap-4 text-gray-600 mt-2">
               <span className="flex items-center gap-1">
                 <Calendar className="h-4 w-4" />
-                {new Date(event.dateStart).toLocaleDateString('pt-BR', {
-                  day: '2-digit',
-                  month: 'long',
-                  year: 'numeric'
-                })}
+                {formatEventDate(event.dateStart, 'pt-BR')}
               </span>
               {event.location && (
                 <span className="flex items-center gap-1">
@@ -142,7 +139,7 @@ export default function EventDetail() {
                     <div>
                       <h4 className="font-semibold text-gray-700 mb-1">Data de Término</h4>
                       <p className="text-gray-600">
-                        {new Date(event.dateEnd).toLocaleDateString('pt-BR')}
+                        {formatShortDate(event.dateEnd, 'pt-BR')}
                       </p>
                     </div>
                   )}
