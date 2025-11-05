@@ -222,3 +222,10 @@
 - [x] Investigar componente DropdownMenuContent (shadcn/ui)
 - [x] Corrigir cor do texto das opções do dropdown para branco - Substituído text-popover-foreground por text-white
 - [x] Testar dropdown aberto com fundo escuro - Confirmado que texto está em PRETO (precisa correção)
+
+## Bug: Ícones de Controle da Planta em Preto
+- [x] Localizar componente ZoomableFloorPlan
+- [x] Corrigir cor dos ícones (zoom in, zoom out, reset) para branco - text-white aplicado
+- [x] Adicionar maior destaque aos botões - bg-white/10, hover:bg-white/20, border-white/30
+- [x] Aumentar tamanho dos ícones de h-4 w-4 para h-5 w-5
+- [x] Testar visualmente na página do evento - Pendente de republicação para teste no link público

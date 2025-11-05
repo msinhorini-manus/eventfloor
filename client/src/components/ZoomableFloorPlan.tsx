@@ -91,24 +91,27 @@ export default function ZoomableFloorPlan({
             variant="secondary"
             onClick={handleZoomIn}
             title="Zoom In"
+            className="bg-white/10 hover:bg-white/20 border-white/30 text-white"
           >
-            <ZoomIn className="h-4 w-4" />
+            <ZoomIn className="h-5 w-5" />
           </Button>
           <Button
             size="icon"
             variant="secondary"
             onClick={handleZoomOut}
             title="Zoom Out"
+            className="bg-white/10 hover:bg-white/20 border-white/30 text-white"
           >
-            <ZoomOut className="h-4 w-4" />
+            <ZoomOut className="h-5 w-5" />
           </Button>
           <Button
             size="icon"
             variant="secondary"
             onClick={handleReset}
             title="Reset"
+            className="bg-white/10 hover:bg-white/20 border-white/30 text-white"
           >
-            <Maximize2 className="h-4 w-4" />
+            <Maximize2 className="h-5 w-5" />
           </Button>
         </div>
       )}
