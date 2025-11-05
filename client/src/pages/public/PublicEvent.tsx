@@ -60,20 +60,20 @@ export default function PublicEvent() {
     <div className="min-h-screen flex flex-col bg-[#0a1628]">
       {/* Header */}
       <header className="bg-[#0f1f3a] border-b border-gray-800 sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-3 md:py-4">
           <div className="flex items-center justify-between">
             <Link href="/">
-              <div className="flex items-center gap-3 cursor-pointer">
-                {APP_LOGO && <img src={APP_LOGO} alt={APP_TITLE} className="h-10" />}
-                <h1 className="text-xl font-bold text-white">{APP_TITLE}</h1>
+              <div className="flex items-center gap-2 md:gap-3 cursor-pointer">
+                {APP_LOGO && <img src={APP_LOGO} alt={APP_TITLE} className="h-8 md:h-10" />}
+                <h1 className="text-base md:text-xl font-bold text-white">{APP_TITLE}</h1>
               </div>
             </Link>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 md:gap-3">
               <LanguageSwitcher />
               <Link href="/">
                 <Button variant="outline" size="sm" className="border-gray-700 text-white hover:bg-gray-800">
-                  <Home className="h-4 w-4 mr-2" />
-                  {t('home.allEvents')}
+                  <Home className="h-4 w-4 md:mr-2" />
+                  <span className="hidden md:inline">{t('home.allEvents')}</span>
                 </Button>
               </Link>
             </div>
@@ -82,36 +82,36 @@ export default function PublicEvent() {
       </header>
 
       {/* Event Header */}
-      <section className="bg-gradient-to-br from-[#0f1f3a] to-[#1a2f4a] py-12 border-b border-gray-800">
+      <section className="bg-gradient-to-br from-[#0f1f3a] to-[#1a2f4a] py-6 md:py-12 border-b border-gray-800">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-white mb-4">{event.name}</h2>
-          <div className="flex flex-wrap items-center gap-4 text-gray-300">
+          <h2 className="text-2xl md:text-4xl font-bold text-white mb-3 md:mb-4">{event.name}</h2>
+          <div className="flex flex-wrap items-center gap-3 md:gap-4 text-sm md:text-base text-gray-300">
             <span className="flex items-center gap-2">
-              <Calendar className="h-5 w-5" />
+              <Calendar className="h-4 w-4 md:h-5 md:w-5" />
               {formatDateRange(event.dateStart, event.dateEnd, 'pt-BR')}
             </span>
             {event.location && (
               <span className="flex items-center gap-2">
-                <MapPin className="h-5 w-5" />
+                <MapPin className="h-4 w-4 md:h-5 md:w-5" />
                 {event.location}
               </span>
             )}
           </div>
           {event.description && (
-            <p className="text-gray-300 mt-4 max-w-3xl">{event.description}</p>
+            <p className="text-sm md:text-base text-gray-300 mt-3 md:mt-4 max-w-3xl">{event.description}</p>
           )}
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="flex-1 py-8">
+      <section className="flex-1 py-4 md:py-8">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 md:gap-6">
             {/* Floor Plan - Maior destaque */}
             <div className="lg:col-span-3">
               <Card className="bg-[#0f1f3a] border-gray-800 card-border-gradient">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-4">{t('event.floorPlan')}</h3>
+                <CardContent className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4">{t('event.floorPlan')}</h3>
                   {event.floorPlanImageUrl ? (
                     <ZoomableFloorPlan
                       imageUrl={event.floorPlanImageUrl}
@@ -138,9 +138,9 @@ export default function PublicEvent() {
 
             {/* Exhibitors List */}
             <div>
-              <Card className="sticky top-24 bg-[#0f1f3a] border-gray-800 card-border-gradient">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-4">
+              <Card className="lg:sticky lg:top-24 bg-[#0f1f3a] border-gray-800 card-border-gradient">
+                <CardContent className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4">
                     {t('event.exhibitors')} ({exhibitors?.length || 0})
                   </h3>
                   

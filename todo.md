@@ -243,3 +243,17 @@
 - [x] Adicionar efeitos visuais extras - hover:shadow-xl e hover:border-[#c8ff00]/70
 - [x] Aumentar scale quando selecionado - scale-150 (antes era scale-125)
 - [x] Testar visualmente na página do evento - Aguardando republicação
+
+## Responsividade Mobile
+- [x] Analisar página Home em mobile
+- [x] Ajustar cards de eventos para mobile (grid responsivo) - Já estava com grid-cols-1 md:grid-cols-2 lg:grid-cols-3
+- [x] Ajustar espaçamentos e padding para telas pequenas - py-8 md:py-12, text-2xl md:text-3xl
+- [x] Ajustar header para mobile - h-8 md:h-10, text-lg md:text-2xl
+- [x] Ajustar hero section para mobile - py-12 md:py-20, text-3xl md:text-4xl lg:text-5xl
+- [x] Analisar página pública do evento em mobile
+- [x] Ajustar layout da planta + sidebar de expositores - grid responsivo, sticky apenas em lg+
+- [x] Ajustar controles de zoom para mobile - h-9 w-9 md:h-10 md:w-10, top-2 right-2 md:top-4 md:right-4
+- [x] Ajustar header da página do evento - h-8 md:h-10, text-base md:text-xl, botão com texto hidden md:inline
+- [x] Ajustar event header - text-2xl md:text-4xl, py-6 md:py-12
+- [x] Ajustar padding dos cards - p-4 md:p-6
+- [x] Testar em diferentes breakpoints (sm, md, lg) - Aguardando republicação para teste final

@@ -33,29 +33,29 @@ export default function Home() {
     <div className="min-h-screen flex flex-col">
       {/* Header - ERP Summit Style */}
       <header className="bg-[#0a1628] border-b border-white/10">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            {APP_LOGO && <img src={APP_LOGO} alt={APP_TITLE} className="h-10" />}
-            <h1 className="text-2xl font-bold text-white">{APP_TITLE}</h1>
+        <div className="container mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2 md:gap-3">
+            {APP_LOGO && <img src={APP_LOGO} alt={APP_TITLE} className="h-8 md:h-10" />}
+            <h1 className="text-lg md:text-2xl font-bold text-white">{APP_TITLE}</h1>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             <LanguageSwitcher />
           </div>
         </div>
       </header>
 
       {/* Hero Section - ERP Summit Style com gradiente azul escuro */}
-      <section className="bg-gradient-to-br from-[#0a1628] via-[#0f2137] to-[#142a46] py-20 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-[#0a1628] via-[#0f2137] to-[#142a46] py-12 md:py-20 relative overflow-hidden">
         {/* Linhas geométricas decorativas */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500 rounded-full blur-3xl"></div>
         </div>
         <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6">
             {t('home.title')}
           </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+          <p className="text-base md:text-xl text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto px-4">
             {t('home.subtitle')}
           </p>
         </div>
@@ -63,11 +63,11 @@ export default function Home() {
 
       {/* Upcoming Events Section */}
       {!isLoading && upcomingEvents && upcomingEvents.length > 0 && (
-        <section className="py-12 bg-gradient-to-br from-orange-50 to-red-50">
+        <section className="py-8 md:py-12 bg-gradient-to-br from-orange-50 to-red-50">
           <div className="container mx-auto px-4">
-            <div className="flex items-center gap-3 mb-8">
+            <div className="flex items-center gap-2 md:gap-3 mb-6 md:mb-8">
               <div className="h-10 w-1 bg-orange-500 rounded"></div>
-              <h3 className="text-3xl font-bold text-white">{t('home.upcomingEvents')}</h3>
+              <h3 className="text-2xl md:text-3xl font-bold text-white">{t('home.upcomingEvents')}</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {upcomingEvents.map((event) => (
@@ -116,9 +116,9 @@ export default function Home() {
       )}
 
       {/* All Events List - ERP Summit Style */}
-      <section className="py-16 bg-[#0a1628]">
+      <section className="py-10 md:py-16 bg-[#0a1628]">
         <div className="container mx-auto px-4">
-          <h3 className="text-3xl font-bold text-white mb-8">{t('home.allEvents')}</h3>
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">{t('home.allEvents')}</h3>
           
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
