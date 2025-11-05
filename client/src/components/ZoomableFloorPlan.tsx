@@ -79,32 +79,7 @@ export default function ZoomableFloorPlan({
     return () => window.removeEventListener("mouseup", handleMouseUpGlobal);
   }, []);
 
-  // Centralizar e dar zoom quando um expositor é focado
-  useEffect(() => {
-    if (focusedExhibitorId && containerRef.current) {
-      const exhibitor = exhibitors.find(ex => ex.id === focusedExhibitorId);
-      if (exhibitor) {
-        const container = containerRef.current;
-        const containerWidth = container.clientWidth;
-        const containerHeight = container.clientHeight;
-        
-        const targetScale = 2;
-        
-        // Calcular posição do expositor em pixels (relativo à imagem original)
-        const exhibitorX = (exhibitor.positionX / 100) * containerWidth;
-        const exhibitorY = (exhibitor.positionY / 100) * containerHeight;
-        
-        // Calcular o deslocamento necessário para centralizar
-        // Fórmula: centro do container - (posição do expositor * escala)
-        const targetX = (containerWidth / 2) - (exhibitorX * targetScale);
-        const targetY = (containerHeight / 2) - (exhibitorY * targetScale);
-        
-        // Aplicar zoom e centralização com animação suave
-        setScale(targetScale);
-        setPosition({ x: targetX, y: targetY });
-      }
-    }
-  }, [focusedExhibitorId, exhibitors]);
+  // Zoom automático removido - usuário controla zoom manualmente
 
   return (
     <div className="relative w-full h-full min-h-[500px] bg-muted/20 rounded-lg overflow-hidden border">
