@@ -236,3 +236,10 @@
 - [x] Reduzir tamanho - de w-20 h-20 para w-12 h-12
 - [x] Ajustar object-fit - de object-cover para object-contain com padding
 - [x] Testar visualmente na página do evento - Aguardando republicação
+
+## Feature: Animação de Zoom no Hover do Logo
+- [x] Adicionar transição suave no hover - hover:scale-125 aplicado
+- [x] Ajustar duração e easing - duration-500 ease-out
+- [x] Adicionar efeitos visuais extras - hover:shadow-xl e hover:border-[#c8ff00]/70
+- [x] Aumentar scale quando selecionado - scale-150 (antes era scale-125)
+- [x] Testar visualmente na página do evento - Aguardando republicação
