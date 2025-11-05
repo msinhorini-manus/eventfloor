@@ -217,3 +217,8 @@
 - [x] Páginas públicas (Home, Evento) - Textos em BRANCO sobre fundo azul escuro
 - [x] Área administrativa - Textos em PRETO sobre fundo branco
 - [x] Seletor de idioma - BRANCO em todas as páginas públicas
+
+## Bug: Dropdown do Seletor de Idioma com Texto Preto
+- [x] Investigar componente DropdownMenuContent (shadcn/ui)
+- [x] Corrigir cor do texto das opções do dropdown para branco - Substituído text-popover-foreground por text-white
+- [x] Testar dropdown aberto com fundo escuro - Confirmado que texto está em PRETO (precisa correção)
