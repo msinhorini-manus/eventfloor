@@ -143,3 +143,10 @@
 - [x] Criar seção de patrocinadores na página pública do evento (mostrar apenas vinculados)
 - [x] Remover campo eventId da tabela sponsors (se existir)
 - [x] Migrar dados existentes para novo modelo (se necessário)
+
+## Bug: Zoom Automático ao Clicar em Expositor
+- [x] Investigar código do componente ZoomableFloorPlan
+- [x] Identificar problema na função de centralização e zoom
+- [x] Corrigir cálculo de posição para centralizar corretamente
+- [x] Garantir que zoom 2x seja aplicado adequadamente
+- [x] Testar funcionalidade com diferentes posições de expositores

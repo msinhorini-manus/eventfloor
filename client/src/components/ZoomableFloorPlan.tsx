@@ -88,16 +88,19 @@ export default function ZoomableFloorPlan({
         const containerWidth = container.clientWidth;
         const containerHeight = container.clientHeight;
         
-        // Calcular posição do expositor em pixels
+        const targetScale = 2;
+        
+        // Calcular posição do expositor em pixels (relativo à imagem original)
         const exhibitorX = (exhibitor.positionX / 100) * containerWidth;
         const exhibitorY = (exhibitor.positionY / 100) * containerHeight;
         
-        // Centralizar o expositor na tela
-        const targetX = containerWidth / 2 - exhibitorX * 2;
-        const targetY = containerHeight / 2 - exhibitorY * 2;
+        // Calcular o deslocamento necessário para centralizar
+        // Fórmula: centro do container - (posição do expositor * escala)
+        const targetX = (containerWidth / 2) - (exhibitorX * targetScale);
+        const targetY = (containerHeight / 2) - (exhibitorY * targetScale);
         
         // Aplicar zoom e centralização com animação suave
-        setScale(2);
+        setScale(targetScale);
         setPosition({ x: targetX, y: targetY });
       }
     }
