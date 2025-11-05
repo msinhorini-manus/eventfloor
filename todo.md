@@ -163,3 +163,9 @@
 - [x] Atualizar APP_TITLE para "ERP Summit | event floor plan"
 - [x] Atualizar APP_LOGO com URL do novo logo
 - [x] Testar visualização em todas as páginas (Home, Admin, Página do Evento)
+
+## Bug: Nome e Logo Não Atualizados
+- [x] Investigar onde APP_LOGO está sendo usado no código
+- [x] Verificar se const.ts está sendo importado corretamente
+- [x] Corrigir referências ao logo no header
+- [x] Testar que título e logo aparecem corretamente em todas as páginas
