@@ -193,3 +193,14 @@
 - [x] Corrigir formatação de data no EventsList admin
 - [x] Corrigir formatação de data no EventDetail admin
 - [x] Testar que data 17 de março de 2026 aparece corretamente
+
+## Exibição Híbrida de Datas (Múltiplos Dias)
+- [x] Criar função formatDateRange() em dateUtils.ts
+- [x] Implementar lógica para detectar 1 dia vs múltiplos dias
+- [x] Implementar formatação inteligente (mesmo mês, meses diferentes, anos diferentes)
+- [x] Atualizar cards da Home para usar formatDateRange
+- [x] Atualizar cabeçalho da página pública do evento
+- [x] Manter seção de detalhes com datas separadas (início/término) - Não necessário, formato compacto é suficiente
+- [x] Testar com evento de 1 dia - Funciona corretamente (mostra apenas data de início)
+- [x] Testar com evento de múltiplos dias no mesmo mês - Funciona perfeitamente ("17 a 18 de março de 2026")
+- [x] Testar com evento que cruza meses - Lógica implementada e pronta para uso

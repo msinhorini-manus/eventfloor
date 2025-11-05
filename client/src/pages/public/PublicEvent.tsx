@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import ExhibitorDrawer from "@/components/ExhibitorDrawer";
 import EventSponsorsSection from "@/components/EventSponsorsSection";
-import { formatEventDate } from "@/lib/dateUtils";
+import { formatEventDate, formatDateRange } from "@/lib/dateUtils";
 
 export default function PublicEvent() {
   const { t } = useTranslation();
@@ -88,7 +88,7 @@ export default function PublicEvent() {
           <div className="flex flex-wrap items-center gap-4 text-gray-300">
             <span className="flex items-center gap-2">
               <Calendar className="h-5 w-5" />
-              {formatEventDate(event.dateStart, 'pt-BR')}
+              {formatDateRange(event.dateStart, event.dateEnd, 'pt-BR')}
             </span>
             {event.location && (
               <span className="flex items-center gap-2">
