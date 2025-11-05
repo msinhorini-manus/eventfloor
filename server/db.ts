@@ -221,7 +221,7 @@ export async function listActiveSponsors() {
   if (!db) throw new Error("Database not available");
   
   return await db.select().from(sponsors)
-    .where(eq(sponsors.isActive, true))
+    .where(and(eq(sponsors.isActive, true), eq(sponsors.showOnHome, true)))
     .orderBy(sponsors.displayOrder, sponsors.createdAt);
 }
 

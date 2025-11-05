@@ -1,0 +1,1 @@
+ALTER TABLE `sponsors` ADD `showOnHome` boolean DEFAULT true NOT NULL;

@@ -148,3 +148,12 @@
 - [x] Remover useEffect de zoom automático do ZoomableFloorPlan
 - [x] Manter apenas drawer lateral e destaque visual
 - [x] Testar que controles manuais de zoom continuam funcionando
+
+## Campo showOnHome para Patrocinadores
+- [x] Adicionar campo showOnHome (boolean, default true) na tabela sponsors
+- [x] Executar db:push para atualizar banco de dados
+- [x] Adicionar checkbox "Mostrar na página inicial (Home)" no formulário de patrocinador
+- [x] Atualizar router sponsors.listActive para filtrar por showOnHome = true
+- [x] Atualizar componente SponsorsSection para usar nova query
+- [x] Testar criação de patrocinador com showOnHome = false
+- [x] Verificar que patrocinador não aparece na Home mas aparece em eventos vinculados

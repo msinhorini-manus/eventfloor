@@ -29,6 +29,13 @@
       "when": 1762226362415,
       "tag": "0003_hard_zarda",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1762306820082,
+      "tag": "0004_perpetual_puma",
+      "breakpoints": true
     }
   ]
 }

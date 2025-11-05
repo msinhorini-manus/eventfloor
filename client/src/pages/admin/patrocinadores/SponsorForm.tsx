@@ -32,6 +32,7 @@ export default function SponsorForm({ sponsorId }: SponsorFormProps) {
   const [tier, setTier] = useState<"diamond" | "gold" | "silver" | "bronze">("gold");
   const [displayOrder, setDisplayOrder] = useState(0);
   const [isActive, setIsActive] = useState(true);
+  const [showOnHome, setShowOnHome] = useState(true);
   const [logoUrl, setLogoUrl] = useState("");
   const [logoKey, setLogoKey] = useState("");
   const [uploading, setUploading] = useState(false);
@@ -71,6 +72,7 @@ export default function SponsorForm({ sponsorId }: SponsorFormProps) {
       setTier(sponsor.tier);
       setDisplayOrder(sponsor.displayOrder);
       setIsActive(sponsor.isActive);
+      setShowOnHome(sponsor.showOnHome);
       setLogoUrl(sponsor.logoUrl || "");
       setLogoKey(sponsor.logoKey || "");
     }
@@ -136,6 +138,7 @@ export default function SponsorForm({ sponsorId }: SponsorFormProps) {
       tier,
       displayOrder,
       isActive,
+      showOnHome,
       logoUrl: logoUrl || undefined,
       logoKey: logoKey || undefined,
     };
@@ -295,6 +298,18 @@ export default function SponsorForm({ sponsorId }: SponsorFormProps) {
               />
               <Label htmlFor="isActive" className="cursor-pointer">
                 Patrocinador ativo (visível na página pública)
+              </Label>
+            </div>
+
+            {/* Show on Home */}
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="showOnHome"
+                checked={showOnHome}
+                onCheckedChange={(checked) => setShowOnHome(checked as boolean)}
+              />
+              <Label htmlFor="showOnHome" className="cursor-pointer">
+                Mostrar na página inicial (Home)
               </Label>
             </div>
 

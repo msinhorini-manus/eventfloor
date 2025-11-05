@@ -90,6 +90,8 @@ export const sponsors = mysqlTable("sponsors", {
   displayOrder: int("displayOrder").default(0).notNull(),
   /** Whether this sponsor is active and should be displayed */
   isActive: boolean("isActive").default(true).notNull(),
+  /** Whether this sponsor should be shown on the home page */
+  showOnHome: boolean("showOnHome").default(true).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
