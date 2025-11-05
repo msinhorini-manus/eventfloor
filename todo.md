@@ -157,3 +157,9 @@
 - [x] Atualizar componente SponsorsSection para usar nova query
 - [x] Testar criação de patrocinador com showOnHome = false
 - [x] Verificar que patrocinador não aparece na Home mas aparece em eventos vinculados
+
+## Personalização da Plataforma
+- [x] Fazer upload do novo logo (logo-erp-summit.png) para S3
+- [x] Atualizar APP_TITLE para "ERP Summit | event floor plan"
+- [x] Atualizar APP_LOGO com URL do novo logo
+- [x] Testar visualização em todas as páginas (Home, Admin, Página do Evento)

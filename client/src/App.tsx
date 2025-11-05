@@ -2,6 +2,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
+import { useEffect } from "react";
+import { APP_TITLE } from "./const";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
@@ -47,6 +49,10 @@ function Router() {
 }
 
 function App() {
+  useEffect(() => {
+    document.title = APP_TITLE;
+  }, []);
+
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
