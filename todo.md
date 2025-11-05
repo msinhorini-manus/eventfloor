@@ -229,3 +229,10 @@
 - [x] Adicionar maior destaque aos botões - bg-white/10, hover:bg-white/20, border-white/30
 - [x] Aumentar tamanho dos ícones de h-4 w-4 para h-5 w-5
 - [x] Testar visualmente na página do evento - Pendente de republicação para teste no link público
+
+## Ajuste: Logo do Expositor na Planta
+- [x] Localizar onde o logo é renderizado no ZoomableFloorPlan
+- [x] Ajustar para formato quadrado - rounded-lg ao invés de rounded-full
+- [x] Reduzir tamanho - de w-20 h-20 para w-12 h-12
+- [x] Ajustar object-fit - de object-cover para object-contain com padding
+- [x] Testar visualmente na página do evento - Aguardando republicação

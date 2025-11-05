@@ -161,7 +161,7 @@ export default function ZoomableFloorPlan({
               {/* Marker Pin */}
               <div className="relative cursor-pointer">
                 {exhibitor.logoUrl ? (
-                  <div className={`w-20 h-20 rounded-full bg-white border-4 shadow-lg overflow-hidden transition-all duration-300 ${
+                  <div className={`w-12 h-12 rounded-lg bg-white border-2 shadow-lg overflow-hidden transition-all duration-300 ${
                     hoveredExhibitorId === exhibitor.id 
                       ? 'border-[#c8ff00] scale-125 shadow-2xl ring-4 ring-[#c8ff00]/50 animate-pulse shadow-[#c8ff00]/30' 
                       : 'border-red-500 hover:scale-110'
@@ -169,7 +169,7 @@ export default function ZoomableFloorPlan({
                     <img
                       src={exhibitor.logoUrl}
                       alt={exhibitor.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain p-1"
                     />
                   </div>
                 ) : (
