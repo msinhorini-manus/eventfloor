@@ -221,3 +221,16 @@
 .glow-on-hover:hover {
   box-shadow: 0 0 20px rgba(200, 255, 0, 0.5), 0 0 40px rgba(200, 255, 0, 0.3);
 }
+
+/* Hide Made with Manus badge */
+[class*="manus-badge"],
+[class*="ManusWatermark"],
+[id*="manus-badge"],
+[id*="manus-watermark"],
+a[href*="manus.im"]:has(img),
+div:has(> a[href*="manus.im"]) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

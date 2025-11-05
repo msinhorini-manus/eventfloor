@@ -289,3 +289,8 @@
 - [x] Alinhar botões à direita do título "Plano del Evento" - justify-between
 - [x] Ajustar espaçamento e responsividade - h-9 w-9 md:h-10 md:w-10
 - [x] Testar em desktop e mobile - Aguardando republicação para teste final
+
+## Remover Badge "Made with Manus"
+- [x] Localizar onde o badge está sendo renderizado - Canto inferior direito, injetado pela plataforma
+- [x] Adicionar CSS para ocultar o badge - Regras CSS adicionadas ao index.css
+- [ ] Testar se o badge foi removido
