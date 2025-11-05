@@ -204,3 +204,16 @@
 - [x] Testar com evento de 1 dia - Funciona corretamente (mostra apenas data de início)
 - [x] Testar com evento de múltiplos dias no mesmo mês - Funciona perfeitamente ("17 a 18 de março de 2026")
 - [x] Testar com evento que cruza meses - Lógica implementada e pronta para uso
+
+## Revisão de Cores de Texto (Branco vs Preto)
+- [x] Varrer todos os arquivos .tsx para identificar textos em preto - 13 ocorrências encontradas
+- [x] Revisar página Home - OK (apenas 1 texto condicional)
+- [x] Revisar página pública do evento - OK
+- [x] Revisar área administrativa (Dashboard, EventsList, EventDetail) - 11 problemas encontrados
+- [x] Revisar componentes (ZoomableFloorPlan, ExhibitorDrawer, etc) - 1 problema encontrado
+- [x] Aplicar correções necessárias - Todos os text-gray-900 substituídos por text-white
+- [x] Corrigir cor do seletor de idioma (LanguageSwitcher)
+- [x] Testar visualmente todas as páginas - Confirmado que textos estão corretos
+- [x] Páginas públicas (Home, Evento) - Textos em BRANCO sobre fundo azul escuro
+- [x] Área administrativa - Textos em PRETO sobre fundo branco
+- [x] Seletor de idioma - BRANCO em todas as páginas públicas

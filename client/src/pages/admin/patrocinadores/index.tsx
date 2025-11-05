@@ -14,10 +14,10 @@ const tierLabels: Record<string, string> = {
 };
 
 const tierColors: Record<string, string> = {
-  diamond: "bg-cyan-500 text-white",
-  gold: "bg-yellow-500 text-white",
-  silver: "bg-gray-400 text-white",
-  bronze: "bg-orange-700 text-white",
+  diamond: "bg-cyan-500 text-gray-900",
+  gold: "bg-yellow-500 text-gray-900",
+  silver: "bg-gray-400 text-gray-900",
+  bronze: "bg-orange-700 text-gray-900",
 };
 
 export default function SponsorsList() {

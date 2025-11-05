@@ -64,7 +64,7 @@ export default function ExhibitorDrawer({ exhibitor, onClose }: ExhibitorDrawerP
                 className="w-14 h-14 object-contain rounded-full bg-blue-50 p-2"
               />
             ) : (
-              <div className="w-14 h-14 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl font-bold">
+              <div className="w-14 h-14 bg-blue-500 rounded-full flex items-center justify-center text-gray-900 text-xl font-bold">
                 {exhibitor.name.substring(0, 1).toUpperCase()}
               </div>
             )}

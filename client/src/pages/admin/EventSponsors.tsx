@@ -181,7 +181,7 @@ export default function EventSponsors() {
             {eventSponsors.map((es) => (
               <Card key={es.id} className="p-4">
                 <div className="flex items-start justify-between mb-3">
-                  <span className={`px-2 py-1 rounded text-xs font-medium text-white ${tierColors[es.tier]}`}>
+                  <span className={`px-2 py-1 rounded text-xs font-medium text-gray-900 ${tierColors[es.tier]}`}>
                     {tierLabels[es.tier]}
                   </span>
                   <Button

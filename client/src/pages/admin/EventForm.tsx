@@ -357,7 +357,7 @@ export default function EventForm() {
                       </Button>
                       {uploadingImage && (
                         <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-lg">
-                          <Loader2 className="h-8 w-8 animate-spin text-white" />
+                          <Loader2 className="h-8 w-8 animate-spin text-gray-900" />
                         </div>
                       )}
                     </div>
