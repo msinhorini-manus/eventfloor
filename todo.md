@@ -294,3 +294,10 @@
 - [x] Localizar onde o badge está sendo renderizado - Canto inferior direito, injetado pela plataforma
 - [x] Adicionar CSS para ocultar o badge - Regras CSS adicionadas ao index.css
 - [ ] Testar se o badge foi removido
+
+## Bug: Acesso ao Painel Admin Após Login
+- [x] Investigar problema de redirecionamento após login (usuário faz login mas não acessa /admin)
+- [x] Implementar parâmetro returnTo na função getLoginUrl
+- [x] Atualizar DashboardLayout para passar caminho atual ao fazer login
+- [x] Modificar oauth.ts para ler returnTo e redirecionar corretamente
+- [x] Testar fluxo completo de autenticação no ambiente de desenvolvimento
