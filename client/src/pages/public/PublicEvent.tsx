@@ -173,6 +173,7 @@ export default function PublicEvent() {
                         showControls={false}
                         hoveredExhibitorId={hoveredExhibitor}
                         focusedExhibitorId={selectedExhibitor}
+                        drawerOpen={selectedExhibitor !== null}
                         onControlsReady={setFloorPlanControls}
                       />
                     </>

@@ -19,6 +19,7 @@ interface ZoomableFloorPlanProps {
   showControls?: boolean;
   hoveredExhibitorId?: number | null;
   focusedExhibitorId?: number | null;
+  drawerOpen?: boolean;
   onControlsReady?: (controls: {
     zoomIn: () => void;
     zoomOut: () => void;
@@ -33,6 +34,7 @@ export default function ZoomableFloorPlan({
   showControls = true,
   hoveredExhibitorId = null,
   focusedExhibitorId = null,
+  drawerOpen = false,
   onControlsReady,
 }: ZoomableFloorPlanProps) {
   const [scale, setScale] = useState(1);
@@ -188,6 +190,8 @@ export default function ZoomableFloorPlan({
                     hoveredExhibitorId === exhibitor.id 
                       ? 'border-[#c8ff00] scale-150 shadow-2xl ring-4 ring-[#c8ff00]/50 shadow-[#c8ff00]/50' 
                       : 'border-red-500 hover:scale-125 hover:shadow-xl hover:border-[#c8ff00]/70'
+                  } ${
+                    drawerOpen && focusedExhibitorId !== exhibitor.id ? 'opacity-40' : 'opacity-100'
                   }`}>
                     <img
                       src={exhibitor.logoUrl}

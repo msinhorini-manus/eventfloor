@@ -349,3 +349,12 @@
 - [x] Permitir edição de posição existente (initialX/initialY props)
 - [x] Integrar com ExhibitorForm substituindo interface antiga
 - [x] Testar fluxo completo: abrir fullscreen → visualizar planta ampliada → funciona perfeitamente
+
+## Bug: Card de Expositor Sobrepõe Logos de Outros Expositores
+- [x] Analisar código atual do card de expositor na página pública (ExhibitorDrawer + ZoomableFloorPlan)
+- [x] Aumentar z-index do ExhibitorDrawer para z-[70] e overlay para z-[60]
+- [x] Aumentar opacidade do overlay de 50% para 60% para dar mais destaque ao drawer
+- [x] Adicionar prop drawerOpen no ZoomableFloorPlan
+- [x] Aplicar opacidade (40%) nos logos quando drawer está aberto (exceto logo selecionado)
+- [x] Passar drawerOpen={selectedExhibitor !== null} do PublicEvent para ZoomableFloorPlan
+- [ ] Testar em ambiente de desenvolvimento

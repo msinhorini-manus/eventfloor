@@ -47,12 +47,12 @@ export default function ExhibitorDrawer({ exhibitor, onClose }: ExhibitorDrawerP
     <>
       {/* Overlay */}
       <div 
-        className="fixed inset-0 bg-black/50 z-50 animate-in fade-in duration-200"
+        className="fixed inset-0 bg-black/60 z-[60] animate-in fade-in duration-200"
         onClick={onClose}
       />
       
       {/* Drawer */}
-      <div className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-white z-50 shadow-2xl animate-in slide-in-from-right duration-300 overflow-y-auto">
+      <div className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-white z-[70] shadow-2xl animate-in slide-in-from-right duration-300 overflow-y-auto">
         {/* Header */}
         <div className="sticky top-0 bg-white border-b z-10">
           <div className="p-4 flex items-start gap-3">
