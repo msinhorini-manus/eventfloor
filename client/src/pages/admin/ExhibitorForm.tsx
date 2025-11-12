@@ -10,6 +10,7 @@ import { useState, useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { Loader2, Upload, X, ArrowLeft, MapPin } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
+import { FloorPlanPositioner } from "@/components/FloorPlanPositioner";
 
 export default function ExhibitorForm() {
   const params = useParams();
@@ -35,6 +36,7 @@ export default function ExhibitorForm() {
   const [uploadingLogo, setUploadingLogo] = useState(false);
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const [selectingPosition, setSelectingPosition] = useState(false);
+  const [showFullscreenPositioner, setShowFullscreenPositioner] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const { data: event } = trpc.events.getById.useQuery({ id: eventId });
@@ -341,22 +343,19 @@ export default function ExhibitorForm() {
                   <CardContent className="space-y-4">
                     <Button
                       type="button"
-                      variant={selectingPosition ? "default" : "outline"}
-                      onClick={() => setSelectingPosition(!selectingPosition)}
+                      variant="outline"
+                      onClick={() => setShowFullscreenPositioner(true)}
                       className="w-full"
                     >
                       <MapPin className="h-4 w-4 mr-2" />
-                      {selectingPosition ? "Clique na planta para marcar" : "Marcar Posição"}
+                      {formData.positionX && formData.positionY ? "Editar Posição" : "Marcar Posição"}
                     </Button>
 
                     <div className="relative">
                       <img
                         src={event.floorPlanImageUrl}
                         alt="Planta do evento"
-                        className={`w-full rounded-lg border ${
-                          selectingPosition ? 'cursor-crosshair' : ''
-                        }`}
-                        onClick={handleFloorPlanClick}
+                        className="w-full rounded-lg border"
                       />
                       {formData.positionX && formData.positionY && (
                         <div
@@ -377,6 +376,20 @@ export default function ExhibitorForm() {
                     )}
                   </CardContent>
                 </Card>
+              )}
+
+              {/* Fullscreen Positioner Modal */}
+              {showFullscreenPositioner && event?.floorPlanImageUrl && (
+                <FloorPlanPositioner
+                  imageUrl={event.floorPlanImageUrl}
+                  initialX={formData.positionX}
+                  initialY={formData.positionY}
+                  onConfirm={(x, y) => {
+                    setFormData({ ...formData, positionX: x, positionY: y });
+                    setShowFullscreenPositioner(false);
+                  }}
+                  onCancel={() => setShowFullscreenPositioner(false)}
+                />
               )}
             </div>
 

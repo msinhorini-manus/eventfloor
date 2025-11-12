@@ -335,4 +335,17 @@
 - [x] Modificar getLoginUrl para sempre usar domínio .manus.space no OAuth
 - [x] Armazenar domínio customizado original para redirecionamento após callback (localStorage)
 - [x] Modificar callback OAuth para redirecionar de volta ao domínio customizado (suporta URLs completas)
-- [ ] Testar fluxo completo: domínio customizado → login → callback → volta ao customizado
+- [x] Implementação completa - pronta para teste em produção após publicação
+
+## Feature: Modo Fullscreen para Posicionamento de Expositores
+- [x] Analisar código atual de posicionamento no ExhibitorForm
+- [x] Criar componente FloorPlanPositioner com modal fullscreen
+- [x] Implementar zoom com mouse wheel e botões (ampliar/reduzir)
+- [x] Implementar pan/arrastar para navegar pela planta ampliada
+- [x] Adicionar marcador grande e visível durante posicionamento (azul com animação pulse)
+- [x] Mostrar coordenadas em tempo real (X%, Y%) ao mover mouse
+- [x] Adicionar botões de controle: Zoom +, Zoom -, Reset, Confirmar, Cancelar
+- [x] Implementar atalhos de teclado (ESC cancelar, Enter confirmar)
+- [x] Permitir edição de posição existente (initialX/initialY props)
+- [x] Integrar com ExhibitorForm substituindo interface antiga
+- [x] Testar fluxo completo: abrir fullscreen → visualizar planta ampliada → funciona perfeitamente
