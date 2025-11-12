@@ -301,3 +301,10 @@
 - [x] Atualizar DashboardLayout para passar caminho atual ao fazer login
 - [x] Modificar oauth.ts para ler returnTo e redirecionar corretamente
 - [x] Testar fluxo completo de autenticação no ambiente de desenvolvimento
+
+## Feature: Botão Admin no Rodapé
+- [x] Adicionar botão "Admin" no rodapé das páginas públicas (Home e Página do Evento)
+- [x] Implementar verificação de role de administrador (ctx.user.role === 'admin')
+- [x] Botão visível apenas para usuários logados com role admin
+- [x] Estilizar botão com identidade visual ERP Summit (cor #c8ff00, hover effects)
+- [x] Testar funcionalidade com usuário admin (botão aparece corretamente)

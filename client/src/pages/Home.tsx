@@ -194,10 +194,24 @@ export default function Home() {
 
       {/* Footer - ERP Summit Style */}
       <footer className="bg-[#050d18] text-white py-8 mt-auto border-t border-white/10">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-gray-400">
-            {t('footer.rights', { year: new Date().getFullYear() })}
-          </p>
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-gray-400 text-center md:text-left">
+              {t('footer.rights', { year: new Date().getFullYear() })}
+            </p>
+            {/* Admin button - visible only for logged admin users */}
+            {isAuthenticated && user?.role === 'admin' && (
+              <Link href="/admin">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="bg-[#c8ff00]/10 border-[#c8ff00]/30 text-[#c8ff00] hover:bg-[#c8ff00]/20 hover:border-[#c8ff00]/50 transition-all duration-300"
+                >
+                  🔐 Admin
+                </Button>
+              </Link>
+            )}
+          </div>
         </div>
       </footer>
     </div>
