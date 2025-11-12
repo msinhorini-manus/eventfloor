@@ -400,29 +400,45 @@ export default function ExhibitorForm() {
                   />
                   
                   {logoPreview ? (
-                    <div className="relative">
-                      <div className="aspect-square w-full bg-gray-50 rounded-lg border flex items-center justify-center p-4">
-                        <img
-                          src={logoPreview}
-                          alt="Preview do logo"
-                          className="max-w-full max-h-full object-contain"
-                        />
-                      </div>
-                      <Button
-                        type="button"
-                        variant="destructive"
-                        size="sm"
-                        className="absolute top-2 right-2"
-                        onClick={handleRemoveLogo}
-                        disabled={uploadingLogo}
-                      >
-                        <X className="h-4 w-4" />
-                      </Button>
-                      {uploadingLogo && (
-                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-lg">
-                          <Loader2 className="h-8 w-8 animate-spin text-gray-900" />
+                    <div className="space-y-3">
+                      <div className="relative">
+                        <div className="aspect-square w-full bg-gray-50 rounded-lg border flex items-center justify-center p-4">
+                          <img
+                            src={logoPreview}
+                            alt="Preview do logo"
+                            className="max-w-full max-h-full object-contain"
+                          />
                         </div>
-                      )}
+                        {uploadingLogo && (
+                          <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-lg">
+                            <Loader2 className="h-8 w-8 animate-spin text-white" />
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex gap-2">
+                        <Button
+                          type="button"
+                          variant="destructive"
+                          size="sm"
+                          className="flex-1"
+                          onClick={handleRemoveLogo}
+                          disabled={uploadingLogo}
+                        >
+                          <X className="h-4 w-4 mr-2" />
+                          Remover Logo
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          className="flex-1 bg-[#c8ff00] hover:bg-[#b8ef00] text-gray-900 border-[#c8ff00]"
+                          onClick={() => fileInputRef.current?.click()}
+                          disabled={uploadingLogo}
+                        >
+                          <Upload className="h-4 w-4 mr-2" />
+                          Substituir Logo
+                        </Button>
+                      </div>
                     </div>
                   ) : (
                     <label

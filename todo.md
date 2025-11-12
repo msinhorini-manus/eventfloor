@@ -319,3 +319,12 @@
 - [x] Implementar validação no backend uploadRouter.ts (impedir upload se status = published)
 - [x] Testar fluxo completo: publicado → despublicar → editar (testado com sucesso)
 - [x] Adicionar indicadores visuais de status no formulário (overlay, opacity, mensagens)
+
+## Feature: Melhorar UX de Edição de Logo do Expositor
+- [x] Remover botão "X" do canto superior direito do preview
+- [x] Adicionar botão "Remover Logo" (azul) abaixo do preview
+- [x] Adicionar botão "Substituir Logo" (amarelo-verde #c8ff00) ao lado do botão Remover
+- [x] Botão Substituir abre seletor de arquivo diretamente (sem remover logo atual)
+- [x] Manter loading state durante upload (overlay com spinner branco)
+- [x] Layout responsivo com dois botões lado a lado (flex gap-2)
+- [x] Testar fluxo completo: visualizar → clicar Substituir → seletor abre corretamente
