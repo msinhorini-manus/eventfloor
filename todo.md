@@ -308,3 +308,14 @@
 - [x] Botão visível apenas para usuários logados com role admin
 - [x] Estilizar botão com identidade visual ERP Summit (cor #c8ff00, hover effects)
 - [x] Testar funcionalidade com usuário admin (botão aparece corretamente)
+
+## Feature: Bloqueio de Planta em Eventos Publicados
+- [x] Adicionar botão "Remover Planta" no formulário de evento (visível apenas em rascunho)
+- [x] Implementar função de remoção de planta (handleRemoveImage limpa floorPlanImageUrl)
+- [x] Bloquear área de upload/remoção quando evento está publicado (renderização condicional)
+- [x] Adicionar mensagem informativa: "🔒 Planta bloqueada - mude para Rascunho para editar"
+- [x] Criar botão de atalho "Despublicar para Editar" (muda status automaticamente)
+- [x] Adicionar diálogo de confirmação ao despublicar (AlertDialog do shadcn/ui)
+- [x] Implementar validação no backend uploadRouter.ts (impedir upload se status = published)
+- [x] Testar fluxo completo: publicado → despublicar → editar (testado com sucesso)
+- [x] Adicionar indicadores visuais de status no formulário (overlay, opacity, mensagens)

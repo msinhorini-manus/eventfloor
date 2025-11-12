@@ -5,6 +5,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { trpc } from "@/lib/trpc";
 import { useLocation, useParams } from "wouter";
 import { useState, useEffect, useRef } from "react";
@@ -31,6 +41,7 @@ export default function EventForm() {
 
   const [uploadingImage, setUploadingImage] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [showUnpublishDialog, setShowUnpublishDialog] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Fetch event data if editing
@@ -324,58 +335,105 @@ export default function EventForm() {
               <CardHeader>
                 <CardTitle>Planta do Evento</CardTitle>
                 <CardDescription>
-                  Faça upload da imagem da planta do evento
+                  {formData.status === 'published' 
+                    ? '🔒 Planta bloqueada - mude o status para "Rascunho" para editar'
+                    : 'Faça upload da imagem da planta do evento'
+                  }
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div>
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                    className="hidden"
-                    id="floor-plan-upload"
-                  />
-                  
-                  {imagePreview ? (
+                {formData.status === 'published' && imagePreview ? (
+                  // Evento publicado: apenas visualização
+                  <div className="space-y-4">
                     <div className="relative">
                       <img
                         src={imagePreview}
                         alt="Preview da planta"
-                        className="w-full rounded-lg border"
+                        className="w-full rounded-lg border opacity-75"
                       />
-                      <Button
-                        type="button"
-                        variant="destructive"
-                        size="sm"
-                        className="absolute top-2 right-2"
-                        onClick={handleRemoveImage}
-                        disabled={uploadingImage}
-                      >
-                        <X className="h-4 w-4" />
-                      </Button>
-                      {uploadingImage && (
-                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-lg">
-                          <Loader2 className="h-8 w-8 animate-spin text-gray-900" />
+                      <div className="absolute inset-0 bg-gray-900/10 flex items-center justify-center rounded-lg">
+                        <div className="bg-white px-6 py-4 rounded-lg shadow-lg text-center max-w-md">
+                          <p className="text-lg font-semibold text-gray-900 mb-2">🔒 Planta Bloqueada</p>
+                          <p className="text-sm text-gray-600 mb-4">
+                            Este evento está publicado. Para editar a planta, é necessário mudar o status para "Rascunho".
+                          </p>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setShowUnpublishDialog(true)}
+                          >
+                            Despublicar para Editar
+                          </Button>
                         </div>
-                      )}
-                    </div>
-                  ) : (
-                    <label
-                      htmlFor="floor-plan-upload"
-                      className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors"
-                    >
-                      <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                        <Upload className="h-12 w-12 text-gray-400 mb-3" />
-                        <p className="mb-2 text-sm text-gray-500">
-                          <span className="font-semibold">Clique para fazer upload</span> ou arraste e solte
-                        </p>
-                        <p className="text-xs text-gray-500">PNG, JPG até 10MB</p>
                       </div>
-                    </label>
-                  )}
-                </div>
+                    </div>
+                  </div>
+                ) : (
+                  // Evento em rascunho: modo de edição
+                  <div>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileChange}
+                      className="hidden"
+                      id="floor-plan-upload"
+                    />
+                    
+                    {imagePreview ? (
+                      <div className="space-y-4">
+                        <div className="relative">
+                          <img
+                            src={imagePreview}
+                            alt="Preview da planta"
+                            className="w-full rounded-lg border"
+                          />
+                          {uploadingImage && (
+                            <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-lg">
+                              <Loader2 className="h-8 w-8 animate-spin text-white" />
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex gap-2">
+                          <Button
+                            type="button"
+                            variant="destructive"
+                            size="sm"
+                            onClick={handleRemoveImage}
+                            disabled={uploadingImage}
+                          >
+                            <X className="h-4 w-4 mr-2" />
+                            Remover Planta
+                          </Button>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => fileInputRef.current?.click()}
+                            disabled={uploadingImage}
+                          >
+                            <Upload className="h-4 w-4 mr-2" />
+                            Substituir Planta
+                          </Button>
+                        </div>
+                      </div>
+                    ) : (
+                      <label
+                        htmlFor="floor-plan-upload"
+                        className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors"
+                      >
+                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                          <Upload className="h-12 w-12 text-gray-400 mb-3" />
+                          <p className="mb-2 text-sm text-gray-500">
+                            <span className="font-semibold">Clique para fazer upload</span> ou arraste e solte
+                          </p>
+                          <p className="text-xs text-gray-500">PNG, JPG até 10MB</p>
+                        </div>
+                      </label>
+                    )}
+                  </div>
+                )}
               </CardContent>
             </Card>
           )}
@@ -400,6 +458,32 @@ export default function EventForm() {
           </div>
         </form>
       </div>
+
+      {/* Unpublish Confirmation Dialog */}
+      <AlertDialog open={showUnpublishDialog} onOpenChange={setShowUnpublishDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>⚠️ Despublicar Evento?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Ao despublicar, o evento será removido da listagem pública temporariamente.
+              Você poderá editar a planta e depois republicar o evento.
+              <br /><br />
+              <strong>Deseja continuar?</strong>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                setFormData(prev => ({ ...prev, status: 'draft' }));
+                toast.info('Status alterado para Rascunho. Agora você pode editar a planta.');
+              }}
+            >
+              Sim, Despublicar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </DashboardLayout>
   );
 }

@@ -23,6 +23,28 @@ export const uploadRouter = router({
       mimeType: z.string(),
     }))
     .mutation(async ({ input, ctx }) => {
+      // Import getDb and events from schema
+      const { getDb } = await import('./db');
+      const { events } = await import('../drizzle/schema');
+      const { eq } = await import('drizzle-orm');
+      
+      // Check if event is published
+      const db = await getDb();
+      if (!db) {
+        throw new TRPCError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: 'Database not available',
+        });
+      }
+      
+      const event = await db.select().from(events).where(eq(events.id, input.eventId)).limit(1);
+      if (event.length > 0 && event[0].status === 'published') {
+        throw new TRPCError({
+          code: 'FORBIDDEN',
+          message: 'Não é possível modificar planta de evento publicado. Mude o status para "Rascunho" primeiro.',
+        });
+      }
+      
       try {
         // Decode base64
         const buffer = Buffer.from(input.fileData, 'base64');
