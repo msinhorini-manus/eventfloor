@@ -31,6 +31,22 @@ export default function ExhibitorForm() {
     positionX: undefined as number | undefined,
     positionY: undefined as number | undefined,
     featured: false,
+    // Contact Information
+    address: "",
+    addressLine2: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    country: "",
+    phone: "",
+    whatsapp: "",
+    email: "",
+    // Social Media
+    facebookUrl: "",
+    instagramUrl: "",
+    linkedinUrl: "",
+    twitterUrl: "",
+    youtubeUrl: "",
   });
 
   const [uploadingLogo, setUploadingLogo] = useState(false);
@@ -59,6 +75,22 @@ export default function ExhibitorForm() {
         positionX: exhibitor.positionX || undefined,
         positionY: exhibitor.positionY || undefined,
         featured: exhibitor.featured,
+        // Contact Information
+        address: exhibitor.address || "",
+        addressLine2: exhibitor.addressLine2 || "",
+        city: exhibitor.city || "",
+        state: exhibitor.state || "",
+        zipCode: exhibitor.zipCode || "",
+        country: exhibitor.country || "",
+        phone: exhibitor.phone || "",
+        whatsapp: exhibitor.whatsapp || "",
+        email: exhibitor.email || "",
+        // Social Media
+        facebookUrl: exhibitor.facebookUrl || "",
+        instagramUrl: exhibitor.instagramUrl || "",
+        linkedinUrl: exhibitor.linkedinUrl || "",
+        twitterUrl: exhibitor.twitterUrl || "",
+        youtubeUrl: exhibitor.youtubeUrl || "",
       });
       if (exhibitor.logoUrl) {
         setLogoPreview(exhibitor.logoUrl);
@@ -327,6 +359,175 @@ export default function ExhibitorForm() {
                     <Label htmlFor="featured" className="cursor-pointer">
                       Expositor em destaque
                     </Label>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Contact Information */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Informações de Contato</CardTitle>
+                  <CardDescription>
+                    Endereço, telefone, e-mail e outros contatos do expositor
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="address">Endereço</Label>
+                    <Input
+                      id="address"
+                      value={formData.address}
+                      onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
+                      placeholder="Rua/Avenida, Número"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="addressLine2">Complemento</Label>
+                    <Input
+                      id="addressLine2"
+                      value={formData.addressLine2}
+                      onChange={(e) => setFormData(prev => ({ ...prev, addressLine2: e.target.value }))}
+                      placeholder="Sala, Andar, Bloco..."
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="city">Cidade</Label>
+                      <Input
+                        id="city"
+                        value={formData.city}
+                        onChange={(e) => setFormData(prev => ({ ...prev, city: e.target.value }))}
+                        placeholder="São Paulo"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="state">Estado/UF</Label>
+                      <Input
+                        id="state"
+                        value={formData.state}
+                        onChange={(e) => setFormData(prev => ({ ...prev, state: e.target.value }))}
+                        placeholder="SP"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="zipCode">CEP</Label>
+                      <Input
+                        id="zipCode"
+                        value={formData.zipCode}
+                        onChange={(e) => setFormData(prev => ({ ...prev, zipCode: e.target.value }))}
+                        placeholder="01234-567"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="country">País</Label>
+                      <Input
+                        id="country"
+                        value={formData.country}
+                        onChange={(e) => setFormData(prev => ({ ...prev, country: e.target.value }))}
+                        placeholder="Brasil"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="phone">Telefone</Label>
+                      <Input
+                        id="phone"
+                        value={formData.phone}
+                        onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+                        placeholder="(11) 1234-5678"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="whatsapp">WhatsApp</Label>
+                      <Input
+                        id="whatsapp"
+                        value={formData.whatsapp}
+                        onChange={(e) => setFormData(prev => ({ ...prev, whatsapp: e.target.value }))}
+                        placeholder="(11) 98765-4321"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="email">E-mail</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                      placeholder="contato@empresa.com"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Social Media */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Redes Sociais</CardTitle>
+                  <CardDescription>
+                    Links para as redes sociais do expositor
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="facebookUrl">Facebook</Label>
+                    <Input
+                      id="facebookUrl"
+                      value={formData.facebookUrl}
+                      onChange={(e) => setFormData(prev => ({ ...prev, facebookUrl: e.target.value }))}
+                      placeholder="https://facebook.com/empresa"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="instagramUrl">Instagram</Label>
+                    <Input
+                      id="instagramUrl"
+                      value={formData.instagramUrl}
+                      onChange={(e) => setFormData(prev => ({ ...prev, instagramUrl: e.target.value }))}
+                      placeholder="https://instagram.com/empresa"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="linkedinUrl">LinkedIn</Label>
+                    <Input
+                      id="linkedinUrl"
+                      value={formData.linkedinUrl}
+                      onChange={(e) => setFormData(prev => ({ ...prev, linkedinUrl: e.target.value }))}
+                      placeholder="https://linkedin.com/company/empresa"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="twitterUrl">Twitter/X</Label>
+                    <Input
+                      id="twitterUrl"
+                      value={formData.twitterUrl}
+                      onChange={(e) => setFormData(prev => ({ ...prev, twitterUrl: e.target.value }))}
+                      placeholder="https://twitter.com/empresa"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="youtubeUrl">YouTube</Label>
+                    <Input
+                      id="youtubeUrl"
+                      value={formData.youtubeUrl}
+                      onChange={(e) => setFormData(prev => ({ ...prev, youtubeUrl: e.target.value }))}
+                      placeholder="https://youtube.com/@empresa"
+                    />
                   </div>
                 </CardContent>
               </Card>

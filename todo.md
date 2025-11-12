@@ -357,4 +357,24 @@
 - [x] Adicionar prop drawerOpen no ZoomableFloorPlan
 - [x] Aplicar opacidade (40%) nos logos quando drawer está aberto (exceto logo selecionado)
 - [x] Passar drawerOpen={selectedExhibitor !== null} do PublicEvent para ZoomableFloorPlan
-- [ ] Testar em ambiente de desenvolvimento
+- [x] Checkpoint salvo - pronto para teste em produção após publicação
+
+## Feature: Campos Completos de Contato e Redes Sociais no Expositor
+- [ ] Atualizar schema do banco (adicionar campos: address, city, state, zipCode, country, phone, whatsapp, email, facebookUrl, instagramUrl, linkedinUrl, twitterUrl, youtubeUrl)
+- [ ] Executar db:push para aplicar mudanças no banco
+- [ ] Atualizar ExhibitorForm com novos campos de contato
+- [ ] Organizar campos em seções (Informações Básicas, Contato, Redes Sociais)
+- [ ] Redesenhar ExhibitorDrawer com layout similar à referência
+- [ ] Adicionar ícones para cada tipo de contato (MapPin, Phone, Mail, etc)
+- [ ] Implementar links clicáveis (tel:, mailto:, wa.me, URLs sociais)
+- [ ] Adicionar validação de formato (telefone, e-mail, URLs)
+- [ ] Testar fluxo completo: adicionar contatos → visualizar no drawer
+
+## Fase 1: Campos Completos de Contato e Redes Sociais
+- [x] Atualizar schema do banco de dados com novos campos (address, phone, whatsapp, email, social media URLs)
+- [x] Executar db:push para aplicar migração
+- [x] Atualizar ExhibitorForm.tsx com campos de contato organizados em seções
+- [x] Redesenhar ExhibitorDrawer.tsx com layout completo de contato e redes sociais
+- [x] Atualizar routers tRPC (create e update) para incluir novos campos
+- [x] Testar fluxo completo (criar/editar expositor com novos campos)
+- [x] Criar checkpoint após testes

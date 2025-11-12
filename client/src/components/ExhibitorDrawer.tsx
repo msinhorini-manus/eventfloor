@@ -1,4 +1,4 @@
-import { X, Bookmark, Share2, MapPin, Globe, CheckCircle2 } from 'lucide-react';
+import { X, Bookmark, Share2, MapPin, Globe, CheckCircle2, Phone, Mail, MessageCircle, Facebook, Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +13,22 @@ interface ExhibitorDrawerProps {
     boothNumber?: string | null;
     description?: string | null;
     website?: string | null;
+    // Contact Information
+    address?: string | null;
+    addressLine2?: string | null;
+    city?: string | null;
+    state?: string | null;
+    zipCode?: string | null;
+    country?: string | null;
+    phone?: string | null;
+    whatsapp?: string | null;
+    email?: string | null;
+    // Social Media
+    facebookUrl?: string | null;
+    instagramUrl?: string | null;
+    linkedinUrl?: string | null;
+    twitterUrl?: string | null;
+    youtubeUrl?: string | null;
   };
   onClose: () => void;
 }
@@ -155,33 +171,147 @@ export default function ExhibitorDrawer({ exhibitor, onClose }: ExhibitorDrawerP
             </div>
           )}
 
-          {/* Website */}
-          {exhibitor.website && (
-            <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
-              <Globe className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
-              <div className="flex-1 min-w-0">
+          {/* Contact Information Section */}
+          {(exhibitor.address || exhibitor.phone || exhibitor.whatsapp || exhibitor.email || exhibitor.website) && (
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold text-gray-900">Informações de Contato</h3>
+              
+              {/* Address */}
+              {exhibitor.address && (
+                <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <MapPin className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm text-gray-700">{exhibitor.address}</p>
+                    {exhibitor.addressLine2 && <p className="text-sm text-gray-700">{exhibitor.addressLine2}</p>}
+                    <p className="text-sm text-gray-700">
+                      {[exhibitor.city, exhibitor.state, exhibitor.zipCode].filter(Boolean).join(', ')}
+                    </p>
+                    {exhibitor.country && <p className="text-sm text-gray-700">{exhibitor.country}</p>}
+                  </div>
+                </div>
+              )}
+
+              {/* Phone */}
+              {exhibitor.phone && (
+                <a
+                  href={`tel:${exhibitor.phone}`}
+                  className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group"
+                >
+                  <Phone className="h-5 w-5 text-green-600 flex-shrink-0" />
+                  <span className="text-sm text-gray-700 group-hover:text-blue-600 font-medium">
+                    {exhibitor.phone}
+                  </span>
+                </a>
+              )}
+
+              {/* WhatsApp */}
+              {exhibitor.whatsapp && (
+                <a
+                  href={`https://wa.me/${exhibitor.whatsapp.replace(/\D/g, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-green-50 transition-colors group"
+                >
+                  <MessageCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
+                  <span className="text-sm text-gray-700 group-hover:text-green-600 font-medium">
+                    WhatsApp: {exhibitor.whatsapp}
+                  </span>
+                </a>
+              )}
+
+              {/* Email */}
+              {exhibitor.email && (
+                <a
+                  href={`mailto:${exhibitor.email}`}
+                  className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group"
+                >
+                  <Mail className="h-5 w-5 text-blue-600 flex-shrink-0" />
+                  <span className="text-sm text-gray-700 group-hover:text-blue-600 font-medium break-all">
+                    {exhibitor.email}
+                  </span>
+                </a>
+              )}
+
+              {/* Website */}
+              {exhibitor.website && (
                 <a
                   href={exhibitor.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-700 font-medium break-all"
+                  className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group"
                 >
-                  {exhibitor.website.replace(/^https?:\/\//, '')}
+                  <Globe className="h-5 w-5 text-blue-600 flex-shrink-0" />
+                  <span className="text-sm text-gray-700 group-hover:text-blue-600 font-medium break-all">
+                    {exhibitor.website.replace(/^https?:\/\//, '')}
+                  </span>
                 </a>
-              </div>
+              )}
             </div>
           )}
 
-          {/* Placeholder for Address (if needed in future) */}
-          {/* <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
-            <MapPin className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
-            <div className="flex-1">
-              <p className="text-sm text-gray-700">Address line 1</p>
-              <p className="text-sm text-gray-700">Address line 2</p>
-              <p className="text-sm text-gray-700">City, State ZIP</p>
-              <p className="text-sm text-gray-700">Country</p>
+          {/* Social Media Section */}
+          {(exhibitor.facebookUrl || exhibitor.instagramUrl || exhibitor.linkedinUrl || exhibitor.twitterUrl || exhibitor.youtubeUrl) && (
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold text-gray-900">Redes Sociais</h3>
+              <div className="flex flex-wrap gap-3">
+                {exhibitor.facebookUrl && (
+                  <a
+                    href={exhibitor.facebookUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors"
+                  >
+                    <Facebook className="h-5 w-5" />
+                    <span className="text-sm font-medium">Facebook</span>
+                  </a>
+                )}
+                {exhibitor.instagramUrl && (
+                  <a
+                    href={exhibitor.instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-pink-50 text-pink-700 rounded-lg hover:bg-pink-100 transition-colors"
+                  >
+                    <Instagram className="h-5 w-5" />
+                    <span className="text-sm font-medium">Instagram</span>
+                  </a>
+                )}
+                {exhibitor.linkedinUrl && (
+                  <a
+                    href={exhibitor.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-800 rounded-lg hover:bg-blue-100 transition-colors"
+                  >
+                    <Linkedin className="h-5 w-5" />
+                    <span className="text-sm font-medium">LinkedIn</span>
+                  </a>
+                )}
+                {exhibitor.twitterUrl && (
+                  <a
+                    href={exhibitor.twitterUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-sky-50 text-sky-700 rounded-lg hover:bg-sky-100 transition-colors"
+                  >
+                    <Twitter className="h-5 w-5" />
+                    <span className="text-sm font-medium">Twitter</span>
+                  </a>
+                )}
+                {exhibitor.youtubeUrl && (
+                  <a
+                    href={exhibitor.youtubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors"
+                  >
+                    <Youtube className="h-5 w-5" />
+                    <span className="text-sm font-medium">YouTube</span>
+                  </a>
+                )}
+              </div>
             </div>
-          </div> */}
+          )}
         </div>
       </div>
     </>

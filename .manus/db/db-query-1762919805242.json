@@ -1,0 +1,22 @@
+{
+  "query": "SELECT id, name, phone, whatsapp, email, address, city, state, facebookUrl, linkedinUrl FROM exhibitors WHERE name = 'IFS' LIMIT 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2rHFxNE4Br5fEkM.d8bf6ec872fa --database WLhCXmNVoGAsnfrDvymsU4 --execute SELECT id, name, phone, whatsapp, email, address, city, state, facebookUrl, linkedinUrl FROM exhibitors WHERE name = 'IFS' LIMIT 1;",
+  "rows": [
+    {
+      "id": "30002",
+      "name": "IFS",
+      "phone": "NULL",
+      "whatsapp": "NULL",
+      "email": "NULL",
+      "address": "NULL",
+      "city": "NULL",
+      "state": "NULL",
+      "facebookUrl": "NULL",
+      "linkedinUrl": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tphone\twhatsapp\temail\taddress\tcity\tstate\tfacebookUrl\tlinkedinUrl\n30002\tIFS\tNULL\tNULL\tNULL\tNULL\tNULL\tNULL\tNULL\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 46
+}

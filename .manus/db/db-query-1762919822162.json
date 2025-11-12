@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE exhibitors SET \n  address = 'Av. Paulista, 1000',\n  addressLine2 = 'Sala 1501',\n  city = 'São Paulo',\n  state = 'SP',\n  zipCode = '01310-100',\n  country = 'Brasil',\n  phone = '(11) 3456-7890',\n  whatsapp = '(11) 98765-4321',\n  email = 'contato@ifs.com',\n  facebookUrl = 'https://facebook.com/ifs',\n  instagramUrl = 'https://instagram.com/ifs',\n  linkedinUrl = 'https://linkedin.com/company/ifs',\n  twitterUrl = 'https://twitter.com/ifs',\n  youtubeUrl = 'https://youtube.com/@ifs'\nWHERE name = 'IFS';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2rHFxNE4Br5fEkM.d8bf6ec872fa --database WLhCXmNVoGAsnfrDvymsU4 --execute UPDATE exhibitors SET \n  address = 'Av. Paulista, 1000',\n  addressLine2 = 'Sala 1501',\n  city = 'São Paulo',\n  state = 'SP',\n  zipCode = '01310-100',\n  country = 'Brasil',\n  phone = '(11) 3456-7890',\n  whatsapp = '(11) 98765-4321',\n  email = 'contato@ifs.com',\n  facebookUrl = 'https://facebook.com/ifs',\n  instagramUrl = 'https://instagram.com/ifs',\n  linkedinUrl = 'https://linkedin.com/company/ifs',\n  twitterUrl = 'https://twitter.com/ifs',\n  youtubeUrl = 'https://youtube.com/@ifs'\nWHERE name = 'IFS';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 53
+}

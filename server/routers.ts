@@ -197,6 +197,22 @@ export const appRouter = router({
         positionX: z.number().optional(),
         positionY: z.number().optional(),
         featured: z.boolean().default(false),
+        // Contact Information
+        address: z.string().optional(),
+        addressLine2: z.string().optional(),
+        city: z.string().optional(),
+        state: z.string().optional(),
+        zipCode: z.string().optional(),
+        country: z.string().optional(),
+        phone: z.string().optional(),
+        whatsapp: z.string().optional(),
+        email: z.string().optional(),
+        // Social Media
+        facebookUrl: z.string().optional(),
+        instagramUrl: z.string().optional(),
+        linkedinUrl: z.string().optional(),
+        twitterUrl: z.string().optional(),
+        youtubeUrl: z.string().optional(),
       }))
       .mutation(async ({ input }) => {
         await db.createExhibitor(input);
@@ -218,6 +234,22 @@ export const appRouter = router({
         positionX: z.number().optional(),
         positionY: z.number().optional(),
         featured: z.boolean().optional(),
+        // Contact Information
+        address: z.string().optional(),
+        addressLine2: z.string().optional(),
+        city: z.string().optional(),
+        state: z.string().optional(),
+        zipCode: z.string().optional(),
+        country: z.string().optional(),
+        phone: z.string().optional(),
+        whatsapp: z.string().optional(),
+        email: z.string().optional(),
+        // Social Media
+        facebookUrl: z.string().optional(),
+        instagramUrl: z.string().optional(),
+        linkedinUrl: z.string().optional(),
+        twitterUrl: z.string().optional(),
+        youtubeUrl: z.string().optional(),
       }))
       .mutation(async ({ input }) => {
         const { id, ...data } = input;
