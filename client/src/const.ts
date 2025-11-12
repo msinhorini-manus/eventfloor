@@ -1,4 +1,5 @@
 export { COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
+import { getManusSpaceDomain, isCustomDomain } from "./lib/domainHelper";
 
 export const APP_TITLE = "ERP Summit | event floor plan";
 
@@ -10,10 +11,29 @@ export const getLoginUrl = (returnTo?: string) => {
   const oauthPortalUrl = import.meta.env.VITE_OAUTH_PORTAL_URL;
   const appId = import.meta.env.VITE_APP_ID;
   
-  // Include returnTo in the callback URL if provided
-  let callbackUrl = `${window.location.origin}/api/oauth/callback`;
-  if (returnTo) {
-    callbackUrl += `?returnTo=${encodeURIComponent(returnTo)}`;
+  const currentOrigin = window.location.origin;
+  const onCustomDomain = isCustomDomain();
+  
+  // Always use .manus.space domain for OAuth callback to avoid OAuth errors
+  // Store original domain in returnTo for redirect after login
+  let callbackOrigin = currentOrigin;
+  
+  // If on custom domain, we need to use the .manus.space domain for OAuth
+  if (onCustomDomain) {
+    callbackOrigin = getManusSpaceDomain();
+  }
+  
+  let callbackUrl = `${callbackOrigin}/api/oauth/callback`;
+  
+  // Build returnTo: if custom domain, include full origin + path, otherwise just path
+  let finalReturnTo = returnTo || '/';
+  if (onCustomDomain && !finalReturnTo.startsWith('http')) {
+    // Store full URL including custom domain
+    finalReturnTo = `${currentOrigin}${finalReturnTo}`;
+  }
+  
+  if (finalReturnTo) {
+    callbackUrl += `?returnTo=${encodeURIComponent(finalReturnTo)}`;
   }
   
   const state = btoa(callbackUrl);

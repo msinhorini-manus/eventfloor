@@ -1,5 +1,6 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { storeManusSpaceDomain } from "@/lib/domainHelper";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import { useEffect } from "react";
@@ -51,6 +52,8 @@ function Router() {
 function App() {
   useEffect(() => {
     document.title = APP_TITLE;
+    // Store .manus.space domain in localStorage for OAuth fallback
+    storeManusSpaceDomain();
   }, []);
 
   return (

@@ -328,3 +328,11 @@
 - [x] Manter loading state durante upload (overlay com spinner branco)
 - [x] Layout responsivo com dois botões lado a lado (flex gap-2)
 - [x] Testar fluxo completo: visualizar → clicar Substituir → seletor abre corretamente
+
+## Bug: OAuth não funciona em domínio customizado
+- [x] Analisar código OAuth atual (server/_core/oauth.ts e client getLoginUrl)
+- [x] Implementar detecção de domínio customizado vs .manus.space (domainHelper.ts)
+- [x] Modificar getLoginUrl para sempre usar domínio .manus.space no OAuth
+- [x] Armazenar domínio customizado original para redirecionamento após callback (localStorage)
+- [x] Modificar callback OAuth para redirecionar de volta ao domínio customizado (suporta URLs completas)
+- [ ] Testar fluxo completo: domínio customizado → login → callback → volta ao customizado
