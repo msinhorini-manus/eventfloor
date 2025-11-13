@@ -394,5 +394,13 @@
 - [x] Atualizar DashboardLayout para usar nova autenticação
 - [x] Criar script para adicionar 4 contas admin
 - [x] Criar 4 contas admin no banco de dados
-- [ ] Testar fluxo completo de login/logout
+- [x] Testar fluxo completo de login/logout
 - [ ] Atualizar documentação no README
+
+
+## Bug: Painel admin vazio após login
+- [x] Investigar por que o painel admin está vazio após fazer login
+- [x] Verificar se o router tRPC adminAuth.me está retornando dados
+- [x] Verificar console do navegador para erros
+- [x] Adicionar cookie-parser ao Express para ler cookies
+- [x] Corrigir problema e testar fluxo completo
