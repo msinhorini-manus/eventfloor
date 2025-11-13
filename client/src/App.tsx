@@ -20,6 +20,7 @@ import NovoPatrocinador from "./pages/admin/patrocinadores/novo";
 import EditarPatrocinador from "./pages/admin/patrocinadores/[id]/editar";
 import EventSponsors from "./pages/admin/EventSponsors";
 import PublicEvent from "./pages/public/PublicEvent";
+import AdminLogin from "./pages/AdminLogin";
 
 function Router() {
   return (
@@ -28,6 +29,7 @@ function Router() {
       <Route path={"/"} component={Home} />
       
       {/* Admin routes - specific routes first */}
+      <Route path="/admin/login" component={AdminLogin} />
       <Route path="/admin" component={AdminDashboard} />
       <Route path="/admin/eventos" component={EventsList} />
       <Route path="/admin/eventos/novo" component={EventForm} />

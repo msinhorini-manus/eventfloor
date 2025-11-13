@@ -50,6 +50,13 @@
       "when": 1762918805477,
       "tag": "0006_high_catseye",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1763066066562,
+      "tag": "0007_keen_northstar",
+      "breakpoints": true
     }
   ]
 }

@@ -385,3 +385,14 @@
 - [x] Testar autenticação e redirecionamento
 - [x] Corrigir problema de roteamento OAuth (usar localStorage para returnTo)
 - [x] Validar que /admin funciona no domínio customizado (requer deploy para limpar cache)
+
+## Sistema de Autenticação Próprio (E-mail + Senha)
+- [x] Criar tabela `admins` no schema do banco de dados
+- [x] Instalar dependências (bcrypt, jsonwebtoken)
+- [x] Implementar routers tRPC de autenticação (login, logout, me)
+- [x] Criar tela de login (/admin/login)
+- [x] Atualizar DashboardLayout para usar nova autenticação
+- [x] Criar script para adicionar 4 contas admin
+- [x] Criar 4 contas admin no banco de dados
+- [ ] Testar fluxo completo de login/logout
+- [ ] Atualizar documentação no README
