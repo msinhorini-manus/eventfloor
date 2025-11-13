@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { APP_TITLE } from "./const";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { OAuthRedirectHandler } from "./components/OAuthRedirectHandler";
 import Home from "./pages/Home";
 import AdminDashboard from "./pages/admin/Dashboard";
 import EventsList from "./pages/admin/EventsList";
@@ -61,6 +62,7 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
+          <OAuthRedirectHandler />
           <Router />
         </TooltipProvider>
       </ThemeProvider>

@@ -12,29 +12,15 @@ export const getLoginUrl = (returnTo?: string) => {
   const appId = import.meta.env.VITE_APP_ID;
   
   const currentOrigin = window.location.origin;
-  const onCustomDomain = isCustomDomain();
   
-  // Always use .manus.space domain for OAuth callback to avoid OAuth errors
-  // Store original domain in returnTo for redirect after login
-  let callbackOrigin = currentOrigin;
-  
-  // If on custom domain, we need to use the .manus.space domain for OAuth
-  if (onCustomDomain) {
-    callbackOrigin = getManusSpaceDomain();
-  }
-  
-  let callbackUrl = `${callbackOrigin}/api/oauth/callback`;
-  
-  // Build returnTo: if custom domain, include full origin + path, otherwise just path
-  let finalReturnTo = returnTo || '/';
-  if (onCustomDomain && !finalReturnTo.startsWith('http')) {
-    // Store full URL including custom domain
-    finalReturnTo = `${currentOrigin}${finalReturnTo}`;
-  }
-  
+  // Store returnTo in localStorage to avoid URL encoding issues
+  const finalReturnTo = returnTo || '/';
   if (finalReturnTo) {
-    callbackUrl += `?returnTo=${encodeURIComponent(finalReturnTo)}`;
+    localStorage.setItem('_oauth_return_to', finalReturnTo);
   }
+  
+  // Use current domain for OAuth callback (works with both custom and .manus.space domains)
+  const callbackUrl = `${currentOrigin}/api/oauth/callback`;
   
   const state = btoa(callbackUrl);
 

@@ -3,8 +3,8 @@
  * This is needed because OAuth only works with registered .manus.space domains
  */
 export function getManusSpaceDomain(): string {
-  // Try to get from environment first
-  const envDomain = import.meta.env.VITE_PREVIEW_URL;
+  // Try to get from environment first (set by platform)
+  const envDomain = import.meta.env.VITE_MANUS_SPACE_DOMAIN || import.meta.env.VITE_PREVIEW_URL;
   if (envDomain) {
     return envDomain.startsWith('http') ? envDomain : `https://${envDomain}`;
   }

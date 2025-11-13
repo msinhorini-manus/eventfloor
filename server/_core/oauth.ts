@@ -44,22 +44,8 @@ export function registerOAuthRoutes(app: Express) {
       const cookieOptions = getSessionCookieOptions(req);
       res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
 
-      // Redirect to returnTo if provided, otherwise to home
-      const returnTo = getQueryParam(req, "returnTo");
-      
-      // Support full URLs (for custom domains) or relative paths
-      let redirectTarget = "/";
-      if (returnTo) {
-        if (returnTo.startsWith("http://") || returnTo.startsWith("https://")) {
-          // Full URL (custom domain case)
-          redirectTarget = returnTo;
-        } else if (returnTo.startsWith("/")) {
-          // Relative path (same domain)
-          redirectTarget = returnTo;
-        }
-      }
-      
-      res.redirect(302, redirectTarget);
+      // Redirect to home - frontend will handle returnTo from localStorage
+      res.redirect(302, "/");
     } catch (error) {
       console.error("[OAuth] Callback failed", error);
       res.status(500).json({ error: "OAuth callback failed" });

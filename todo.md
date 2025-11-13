@@ -378,3 +378,10 @@
 - [x] Atualizar routers tRPC (create e update) para incluir novos campos
 - [x] Testar fluxo completo (criar/editar expositor com novos campos)
 - [x] Criar checkpoint após testes
+
+## Bug: Rota /admin não acessível no domínio personalizado
+- [x] Investigar erro ao acessar eventfloor.erpsummit.com/admin
+- [x] Verificar configuração de rotas no App.tsx
+- [x] Testar autenticação e redirecionamento
+- [x] Corrigir problema de roteamento OAuth (usar localStorage para returnTo)
+- [x] Validar que /admin funciona no domínio customizado (requer deploy para limpar cache)
